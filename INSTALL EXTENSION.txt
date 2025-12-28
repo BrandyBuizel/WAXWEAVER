@@ -1,0 +1,27 @@
+open terminal in the waxweaver folder and type in the following commands in order:
+
+
+git submodule add -b 4.2 https://github.com/godotengine/godot-cpp
+
+cd godot-cpp
+
+git submodule update --init
+
+scons platform=windows
+
+(or if you are Linux, platform=Linux, platform=macos (MAC OS) )
+
+
+
+HOW TO BUILD:
+
+in the main waxweaver folder open terminal and type in :
+
+scons platform=windows
+
+(replace with whatever OS/platform you are on)
+
+
+GET EXTENSION API:
+
+scons platform=windows custom_api_file=gdextension/extension_api.json
