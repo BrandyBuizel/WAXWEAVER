@@ -1,6 +1,6 @@
-# contributing to waxweaver [COMMUNITY EDITION]
-
-![<img src="https://waxweaver.wiki.gg/images/Site-logo.png" />](<img src="https://waxweaver.wiki.gg/images/Site-logo.png" />)
+# WAXWEAVER
+![waxweaver](https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3599070/extras/444bcc1631004be78059731eb4e44089.avif?t=1766893565)
+### [community edition]
 
 - [ ] get successful, reproducable compiling code
 - [ ] prep moddin tools
