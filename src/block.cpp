@@ -1,7 +1,7 @@
 #include "block.h"
 #include "lookupBlock.h"
 #include <godot_cpp/core/class_db.hpp>
-
+#include <iostream>
 #include <godot_cpp/variant/utility_functions.hpp>
 
 using namespace godot;
@@ -57,14 +57,16 @@ void BLOCK::setNewVariables(){
 }
 
 void BLOCK::setTexture( const char* file ) {
-    ResourceLoader rl;
+    ResourceLoader::get_singleton()->load(file);
+    /*ResourceLoader rl;
     if(rl.exists(file)){
         texture = rl.load(file);
 
         texImage = texture->get_image();
         texImage->convert(Image::FORMAT_RGBA8);
+        std::cout << "yup";
     }
-
+    */
 }
 
 Dictionary BLOCK::onTick(int x, int y, PLANETDATA *planet, int dir){

@@ -31,7 +31,7 @@ public:
     void generateSunPlanet(PLANETDATA *planet, FastNoiseLite *noise);
     void generateAridPlanet(PLANETDATA *planet, FastNoiseLite *noise);
     void generateLatticePlanet(PLANETDATA *planet, FastNoiseLite *noise);
-    
+    void generateTorraPlanet(PLANETDATA* planet, FastNoiseLite* noise);
     
     double getBlockDistance(int x, int y, PLANETDATA *planet);
     int airOrCaveAir(int x,int y, PLANETDATA *planet);

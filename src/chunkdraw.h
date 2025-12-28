@@ -23,6 +23,7 @@
 
 #include "lookupBlock.h"
 #include "planetData.h"
+#include "block.h"
 
 namespace godot {
 
@@ -44,7 +45,7 @@ private:
 	Ref<Texture2D> watertexture;
     Ref<Image> watertexImage;
 
-protected:
+public:
 	static void _bind_methods();
 
 public:

@@ -10,6 +10,7 @@ void PLANETGEN::_bind_methods() {
     ClassDB::bind_method(D_METHOD("generateSunPlanet","DATAC"), &PLANETGEN::generateSunPlanet);
     ClassDB::bind_method(D_METHOD("generateAridPlanet","DATAC"), &PLANETGEN::generateAridPlanet);
     ClassDB::bind_method(D_METHOD("generateLatticePlanet","DATAC"), &PLANETGEN::generateLatticePlanet);
+    ClassDB::bind_method(D_METHOD("generateTorraPlanet", "DATAC"), &PLANETGEN::generateTorraPlanet);
 }
 
 PLANETGEN::PLANETGEN() {
@@ -1169,6 +1170,37 @@ void PLANETGEN::generateAridPlanet(PLANETDATA *planet,FastNoiseLite *noise){
             if (dis <= 3){ // core
                 planet->setTileData(x,y,5);
                 planet->setBGData(x,y,5);
+            }
+        }
+    }
+}
+
+/////////////////// Torra GENERATION /////////////////
+
+void PLANETGEN::generateTorraPlanet(PLANETDATA* planet, FastNoiseLite* noise) {
+    int planetSize = planet->planetSize;
+
+    int baseSurface = std::max(planetSize / 4, (planetSize / 2) - 128);
+
+    for (int x = 0; x < planetSize; x++) {
+        for (int y = 0; y < planetSize; y++) {
+
+            int quad = planet->getPositionLookup(x, y);
+            int side = Vector2(x, y).rotated(acos(0.0) * quad).x;
+            double dis = getBlockDistance(x, y, planet);
+            double surface = (noise->get_noise_1d(side * 2.0) * 8.0) + baseSurface;
+
+            if (dis <= surface) {
+                planet->setTileData(x, y, 2); // remember to add sandstone in here eventually
+                planet->setBGData(x, y, 2);
+            }
+            else if (dis <= surface + 4) {
+                planet->setTileData(x, y, 14);
+                planet->setBGData(x, y, 14);
+            }
+            if (dis <= 3) { // core
+                planet->setTileData(x, y, 5);
+                planet->setBGData(x, y, 5);
             }
         }
     }
