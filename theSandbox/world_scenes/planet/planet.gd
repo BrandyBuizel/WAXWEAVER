@@ -279,6 +279,9 @@ func generateTerrain():
 		"latticehardcore":
 			BlockData.theGenerator.generateLatticePlanet(DATAC,noise)
 			return
+		"Torra":
+			BlockData.theGenerator.generateTorraPlanet(DATAC,noise)
+			return
 	
 	match planetType:
 		"forest":BlockData.theGenerator.generateForestPlanet(DATAC,noise)

@@ -3,6 +3,10 @@ open terminal in the waxweaver folder and type in the following commands in orde
 
 git submodule add -b 4.2 https://github.com/godotengine/godot-cpp
 
+git submodule add -b godot-4.2-stable https://github.com/godotengine/godot-cpp
+
+
+
 cd godot-cpp
 
 git submodule update --init
@@ -24,4 +28,14 @@ scons platform=windows
 
 GET EXTENSION API:
 
+cd godot-cpp
+
 scons platform=windows custom_api_file=gdextension/extension_api.json
+
+then go to godot-cpp/gd-extension, then copy  [extension_api] and [gdextension_interface.h], then paste it in the include folder in godot-cpp folder
+
+then ofc,
+
+scons platform=windows
+
+scons -j24

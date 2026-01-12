@@ -2,6 +2,8 @@ TO BUILD FOR WINDOWS:
 
 scons platform=windows
 
+scons platform=windows target=template_release
+
 add "target=template_release" to build for release
 
 
