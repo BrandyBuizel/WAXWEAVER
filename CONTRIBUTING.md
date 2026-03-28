@@ -14,7 +14,7 @@
 * [Pull Requests](#pull-requests)
 
 ## Getting Started
-Feel free to ask questions in our [Discord Server](https://discord.gg/ZpERRbpwrP).
+Feel free to ask questions in our [Discord Server](https://discord.gg/ZpERRbpwrP)
 
 ## How to Build
 open terminal in the waxweaver folder and type in the following commands in order:
@@ -25,22 +25,14 @@ open terminal in the waxweaver folder and type in the following commands in orde
 
 ```git submodule update --init```
 
+Note that ```scons``` requires Python!
+
 * Windows: `scons platform=windows`
-* macOS: `scons platform=macos`
 * Linux: `scons platform=Linux`
+* macOS: `scons platform=macos`
 
-HOW TO BUILD:
-
-in the main waxweaver folder open terminal and type in :
-
-scons platform=windows
-
-(replace with whatever OS/platform you are on)
-
-
-GET EXTENSION API:
-
-scons platform=windows custom_api_file=gdextension/extension_api.json
+### GET EXTENSION API:
+`scons platform=windows custom_api_file=gdextension/extension_api.json`
 
 ## Ways to Contribute
 We love new contributors!
@@ -52,6 +44,7 @@ Improving documentation is a great way to learn the codebase. Adding documentati
 Start an "Issue"
 
 ## Guidelines for Commit Messages
-Nothing you write in the commit messages should EVER warrant a section like this existing and describing every way you can be nasty.
+Nothing you write in the commit messages should EVER warrant a section like this existing and describing every way you can be nasty. Just don't be awful, please.
 
 ## Pull Requests
+Submit away!
