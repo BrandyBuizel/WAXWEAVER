@@ -12,6 +12,7 @@ var state :int=0
 # 8: medals
 # 9: rename world
 # 10: lobby list
+# 11: mods
 
 @onready var selectedslot = $savefiles/ScrollContainer/VBoxContainer/saveslot
 
@@ -85,9 +86,11 @@ func enterState(newstate):
 			$createNewWorld.hide()
 			$areyousure.hide()
 			$renameWorld.hide()
+			$mods.hide()
 		0:
 			if state == 1:
 				$savefiles.hide()
+			$mods.hide()
 			$mainButtons.show()
 			
 		2:
@@ -117,6 +120,10 @@ func enterState(newstate):
 		10:
 			$mainButtons.hide()
 			$joinLobbyScreen.show()
+		11:
+			$mainButtons.hide()
+			$mods.show()
+			
 	
 	$bg/AnimatedSprite2D.visible = newstate == 0
 	$bg/AnimatedSprite2D2.visible = newstate == 0
@@ -292,3 +299,45 @@ func _on_back_pressed():
 func _on_lobbies_pressed():
 	enterState(10)
 	$joinLobbyScreen.getLobbyList()
+	
+
+func _on_mods_pressed():
+	enterState(11)
+	_on_reload_mods_pressed()
+
+	pass # Replace with function body.
+
+var modslot = preload("res://ui_scenes/mainMenu/saveSlot/modslot.tscn")
+
+func _on_reload_mods_pressed():
+	for modnode in $"mods/ScrollContainer/VBoxContainer".get_children():
+		$"mods/ScrollContainer/VBoxContainer".remove_child(modnode)
+	
+	var folders = DirAccess.get_directories_at("res://mods")
+	
+	for folder in folders:
+		var loaded: bool = false
+		var files = DirAccess.open("res://mods/" + folder).get_files()
+		
+		if (!files.has("mod.json")): # Checking if this folder is actually a mod
+			continue 
+		
+		print("loaded mod" + folder)
+		
+		var instance = modslot.instantiate()
+		
+		instance.find_child("modName").text = folder
+		#instance.find_child("verison").text = folder
+		if (files.has("icon.png")):
+			instance.find_child("icon").texture = load("res://mods/" + str(folder)+ "/icon.png")
+		$"mods/ScrollContainer/VBoxContainer".add_child(instance, false, 0)
+	pass 
+
+
+func _on_open_mod_directory_pressed():
+	Saving.open_site(ProjectSettings.globalize_path("res://mods")) #Saving.open_site("res://mods")
+	pass # Replace with function body.
+
+
+
+

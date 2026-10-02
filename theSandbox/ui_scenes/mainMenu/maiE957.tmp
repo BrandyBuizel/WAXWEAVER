@@ -1,0 +1,1154 @@
+[gd_scene load_steps=45 format=3 uid="uid://bx0771l28p0cu"]
+
+[ext_resource type="Script" path="res://ui_scenes/mainMenu/main_menu.gd" id="1_y2dfr"]
+[ext_resource type="Texture2D" uid="uid://16yss77fimhy" path="res://ui_scenes/mainMenu/bg.png" id="2_2i3we"]
+[ext_resource type="Texture2D" uid="uid://qt0baw3j5iqw" path="res://ui_scenes/mainMenu/cool.png" id="2_q71dy"]
+[ext_resource type="Texture2D" uid="uid://d0gkklwukqupd" path="res://ui_scenes/backgrounds/forest/clouds.png" id="3_5156g"]
+[ext_resource type="PackedScene" uid="uid://mh4q570jpivc" path="res://ui_scenes/backgrounds/background_layer.tscn" id="5_r3d4t"]
+[ext_resource type="PackedScene" uid="uid://d0j06gpiq8jxo" path="res://ui_scenes/mainMenu/textbutton/text_button.tscn" id="6_amthu"]
+[ext_resource type="Texture2D" uid="uid://boaaats2ld7a1" path="res://ui_scenes/mainMenu/logo.png" id="6_nmr1r"]
+[ext_resource type="PackedScene" uid="uid://d3n68qsk4ytm8" path="res://ui_scenes/mainMenu/saveSlot/saveslot.tscn" id="7_c7fnh"]
+[ext_resource type="Texture2D" uid="uid://copf1xjkj03ui" path="res://ui_scenes/mainMenu/folder.png" id="8_5uoko"]
+[ext_resource type="Texture2D" uid="uid://celgr5v0qm8m3" path="res://ui_scenes/mouseCursor/mouseIcon.png" id="8_d6c0u"]
+[ext_resource type="AudioStream" uid="uid://blyqbud5ad6xd" path="res://sound/music/mainTheme.ogg" id="9_ailx1"]
+[ext_resource type="FontFile" uid="uid://bn0yrqolh4ms8" path="res://zeeg/font/Arcadepix Plus.ttf" id="9_j42vm"]
+[ext_resource type="Texture2D" uid="uid://cx2m6wjr7efm6" path="res://ui_scenes/mainMenu/reload.png" id="10_xaeay"]
+[ext_resource type="AudioStream" uid="uid://ce5rfwabi53cj" path="res://sound/ambient/softwind.ogg" id="11_ny3be"]
+[ext_resource type="PackedScene" uid="uid://crkseldnn7m4" path="res://ui_scenes/options/options_menu.tscn" id="12_oduev"]
+[ext_resource type="Texture2D" uid="uid://dmywa8ylssaw6" path="res://ui_scenes/mainMenu/tutorialControls.png" id="14_bv80d"]
+[ext_resource type="PackedScene" uid="uid://d32dl3s4offu" path="res://ui_scenes/achievements/achievementsMenu.tscn" id="14_pgst0"]
+[ext_resource type="Texture2D" uid="uid://dlexgb4yfmn38" path="res://items/food/birdMeat.png" id="15_lq83u"]
+[ext_resource type="Texture2D" uid="uid://6mmultwm20pw" path="res://ui_scenes/mainMenu/creditIcons.png" id="16_avgr1"]
+[ext_resource type="Texture2D" uid="uid://csibj827o7h0h" path="res://ui_scenes/mainMenu/saveSlot/rect.png" id="16_kilqg"]
+[ext_resource type="Script" path="res://ui_scenes/mainMenu/joinLobbyScreen.gd" id="18_72svt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2jik"]
+atlas = ExtResource("2_q71dy")
+region = Rect2(0, 0, 200, 213)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2c73e"]
+atlas = ExtResource("2_q71dy")
+region = Rect2(200, 0, 200, 213)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijgue"]
+atlas = ExtResource("2_q71dy")
+region = Rect2(400, 0, 200, 213)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i6m31"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2jik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2c73e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijgue")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6riis"]
+bg_color = Color(0.709804, 0.709804, 0.709804, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm1y8"]
+bg_color = Color(0.658824, 0.658824, 0.658824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omsf4"]
+bg_color = Color(0.509804, 0.509804, 0.509804, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sesr6"]
+content_margin_left = 1.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.176471)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 2
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_ykq8e"]
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_6riis")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_cm1y8")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_omsf4")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_sesr6")
+VScrollBar/styles/scroll_focus = null
+VSlider/constants/center_grabber = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86yi6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pkadl"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gvndp"]
+font_size = 32
+font_color = Color(0.341176, 0.341176, 0.341176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vrhq"]
+bg_color = Color(0.709804, 0.709804, 0.709804, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slyn1"]
+bg_color = Color(0.658824, 0.658824, 0.658824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2px4"]
+bg_color = Color(0.509804, 0.509804, 0.509804, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_givww"]
+content_margin_left = 1.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.176471)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 2
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_y2kaf"]
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_8vrhq")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_slyn1")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_y2px4")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_givww")
+VScrollBar/styles/scroll_focus = null
+VSlider/constants/center_grabber = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ukjca"]
+font_size = 32
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mjk8v"]
+font_color = Color(0.129412, 0.129412, 0.129412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4l11p"]
+font_size = 32
+font_color = Color(1, 0.784314, 0.333333, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cljap"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6drp"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3tcx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="mainMenu" type="Node2D"]
+script = ExtResource("1_y2dfr")
+
+[node name="bg" type="Node2D" parent="."]
+
+[node name="Bg" type="Sprite2D" parent="bg"]
+texture = ExtResource("2_2i3we")
+centered = false
+
+[node name="backgroundLayer" parent="bg" instance=ExtResource("5_r3d4t")]
+modulate = Color(0.521569, 0.756863, 1, 0.0941176)
+position = Vector2(-2, -3)
+texture = ExtResource("3_5156g")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="bg"]
+modulate = Color(0, 0, 0, 0.254902)
+position = Vector2(1, 88)
+sprite_frames = SubResource("SpriteFrames_i6m31")
+autoplay = "default"
+centered = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bg"]
+position = Vector2(0, 87)
+sprite_frames = SubResource("SpriteFrames_i6m31")
+autoplay = "default"
+centered = false
+
+[node name="mainButtons" type="Node2D" parent="."]
+
+[node name="versionLabel" type="Label" parent="mainButtons"]
+modulate = Color(1, 1, 1, 0.121569)
+offset_left = 4.0
+offset_top = 283.0
+offset_right = 98.0
+offset_bottom = 299.0
+text = "v0.0.0"
+
+[node name="Logo" type="Sprite2D" parent="mainButtons"]
+position = Vector2(243, 45)
+texture = ExtResource("6_nmr1r")
+
+[node name="buttons" type="Node2D" parent="mainButtons"]
+position = Vector2(-3, 83)
+
+[node name="play" parent="mainButtons/buttons" instance=ExtResource("6_amthu")]
+offset_left = 359.0
+offset_top = -9.0
+offset_right = 386.0
+offset_bottom = 8.0
+buttonText = "play"
+
+[node name="lobbies" parent="mainButtons/buttons" instance=ExtResource("6_amthu")]
+offset_left = 341.0
+offset_top = 18.0
+offset_right = 386.0
+offset_bottom = 35.0
+buttonText = "lobbies"
+
+[node name="medals" parent="mainButtons/buttons" instance=ExtResource("6_amthu")]
+offset_left = 342.0
+offset_top = 43.0
+offset_right = 386.0
+offset_bottom = 60.0
+buttonText = "medals"
+
+[node name="tutorial" parent="mainButtons/buttons" instance=ExtResource("6_amthu")]
+offset_left = 336.0
+offset_top = 68.0
+offset_right = 386.0
+offset_bottom = 85.0
+buttonText = "tutorial"
+
+[node name="options" parent="mainButtons/buttons" instance=ExtResource("6_amthu")]
+offset_left = 339.0
+offset_top = 93.0
+offset_right = 386.0
+offset_bottom = 110.0
+buttonText = "options"
+
+[node name="discord" parent="mainButtons/buttons" instance=ExtResource("6_amthu")]
+offset_left = 339.0
+offset_top = 119.0
+offset_right = 386.0
+offset_bottom = 136.0
+buttonText = "discord"
+
+[node name="credits" parent="mainButtons/buttons" instance=ExtResource("6_amthu")]
+offset_left = 341.0
+offset_top = 144.0
+offset_right = 386.0
+offset_bottom = 161.0
+buttonText = "credits"
+
+[node name="mods" parent="mainButtons/buttons" instance=ExtResource("6_amthu")]
+offset_left = 354.0
+offset_top = 168.0
+offset_right = 386.0
+offset_bottom = 185.0
+buttonText = "mods"
+
+[node name="quit" parent="mainButtons/buttons" instance=ExtResource("6_amthu")]
+offset_left = 361.0
+offset_top = 192.0
+offset_right = 386.0
+offset_bottom = 209.0
+buttonText = "quit"
+
+[node name="savefiles" type="Node2D" parent="."]
+visible = false
+
+[node name="backSave" parent="savefiles" instance=ExtResource("6_amthu")]
+offset_left = 357.0
+offset_top = 15.0
+offset_right = 386.0
+offset_bottom = 32.0
+buttonText = "back"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="savefiles"]
+offset_left = 6.0
+offset_top = 43.0
+offset_right = 396.0
+offset_bottom = 297.0
+theme = SubResource("Theme_ykq8e")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="savefiles/ScrollContainer"]
+layout_mode = 2
+
+[node name="saveslot" parent="savefiles/ScrollContainer/VBoxContainer" instance=ExtResource("7_c7fnh")]
+layout_mode = 2
+
+[node name="saveslot2" parent="savefiles/ScrollContainer/VBoxContainer" instance=ExtResource("7_c7fnh")]
+layout_mode = 2
+saveFile = "save2"
+
+[node name="saveslot3" parent="savefiles/ScrollContainer/VBoxContainer" instance=ExtResource("7_c7fnh")]
+layout_mode = 2
+saveFile = "save3"
+
+[node name="saveslot4" parent="savefiles/ScrollContainer/VBoxContainer" instance=ExtResource("7_c7fnh")]
+layout_mode = 2
+saveFile = "save4"
+
+[node name="saveslot5" parent="savefiles/ScrollContainer/VBoxContainer" instance=ExtResource("7_c7fnh")]
+layout_mode = 2
+saveFile = "save5"
+
+[node name="saveslot6" parent="savefiles/ScrollContainer/VBoxContainer" instance=ExtResource("7_c7fnh")]
+layout_mode = 2
+saveFile = "save6"
+
+[node name="saveslot7" parent="savefiles/ScrollContainer/VBoxContainer" instance=ExtResource("7_c7fnh")]
+layout_mode = 2
+saveFile = "save7"
+
+[node name="saveslot8" parent="savefiles/ScrollContainer/VBoxContainer" instance=ExtResource("7_c7fnh")]
+layout_mode = 2
+saveFile = "save8"
+
+[node name="saveslot9" parent="savefiles/ScrollContainer/VBoxContainer" instance=ExtResource("7_c7fnh")]
+layout_mode = 2
+saveFile = "save9"
+
+[node name="saveslot10" parent="savefiles/ScrollContainer/VBoxContainer" instance=ExtResource("7_c7fnh")]
+layout_mode = 2
+saveFile = "save10"
+
+[node name="openDirectory" type="Button" parent="savefiles"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 17.0
+offset_top = 10.0
+offset_right = 40.0
+offset_bottom = 33.0
+tooltip_text = "open save location"
+
+[node name="Folder" type="Sprite2D" parent="savefiles/openDirectory"]
+position = Vector2(12, 12)
+texture = ExtResource("8_5uoko")
+
+[node name="reloadSaves" type="Button" parent="savefiles"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 50.0
+offset_top = 10.0
+offset_right = 73.0
+offset_bottom = 33.0
+tooltip_text = "refresh saves"
+
+[node name="Folder" type="Sprite2D" parent="savefiles/reloadSaves"]
+position = Vector2(12, 12)
+texture = ExtResource("10_xaeay")
+
+[node name="createNewWorld" type="Node2D" parent="."]
+visible = false
+
+[node name="NinePatchRect" type="NinePatchRect" parent="createNewWorld"]
+offset_left = 100.0
+offset_top = 123.0
+offset_right = 300.0
+offset_bottom = 151.0
+mouse_filter = 0
+texture = ExtResource("16_kilqg")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="TextEdit" type="TextEdit" parent="createNewWorld"]
+offset_left = 110.0
+offset_top = 126.0
+offset_right = 290.0
+offset_bottom = 154.0
+theme_override_fonts/font = ExtResource("9_j42vm")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_86yi6")
+theme_override_styles/focus = SubResource("StyleBoxFlat_86yi6")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_86yi6")
+placeholder_text = "enter name"
+
+[node name="Label" type="Label" parent="createNewWorld"]
+offset_top = 104.0
+offset_right = 400.0
+offset_bottom = 131.0
+text = "create new game"
+label_settings = SubResource("LabelSettings_pkadl")
+horizontal_alignment = 1
+
+[node name="confirm" parent="createNewWorld" instance=ExtResource("6_amthu")]
+offset_left = 237.0
+offset_top = 198.0
+offset_right = 285.0
+offset_bottom = 215.0
+buttonText = "confirm"
+
+[node name="cancel" parent="createNewWorld" instance=ExtResource("6_amthu")]
+offset_left = 118.0
+offset_top = 198.0
+offset_right = 157.0
+offset_bottom = 215.0
+buttonText = "cancel"
+
+[node name="worldType" parent="createNewWorld" instance=ExtResource("6_amthu")]
+offset_left = 106.0
+offset_top = 153.0
+offset_right = 222.0
+offset_bottom = 170.0
+buttonText = "gamemode: normal"
+
+[node name="renameWorld" type="Node2D" parent="."]
+visible = false
+
+[node name="NinePatchRect" type="NinePatchRect" parent="renameWorld"]
+offset_left = 100.0
+offset_top = 123.0
+offset_right = 300.0
+offset_bottom = 151.0
+mouse_filter = 0
+texture = ExtResource("16_kilqg")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="renameTextEdit" type="TextEdit" parent="renameWorld"]
+offset_left = 110.0
+offset_top = 126.0
+offset_right = 290.0
+offset_bottom = 154.0
+theme_override_fonts/font = ExtResource("9_j42vm")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_86yi6")
+theme_override_styles/focus = SubResource("StyleBoxFlat_86yi6")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_86yi6")
+placeholder_text = "enter name"
+
+[node name="Label" type="Label" parent="renameWorld"]
+offset_top = 104.0
+offset_right = 400.0
+offset_bottom = 131.0
+text = "rename world"
+label_settings = SubResource("LabelSettings_pkadl")
+horizontal_alignment = 1
+
+[node name="renameconfirm" parent="renameWorld" instance=ExtResource("6_amthu")]
+offset_left = 237.0
+offset_top = 198.0
+offset_right = 285.0
+offset_bottom = 215.0
+buttonText = "confirm"
+
+[node name="renamecancel" parent="renameWorld" instance=ExtResource("6_amthu")]
+offset_left = 118.0
+offset_top = 198.0
+offset_right = 157.0
+offset_bottom = 215.0
+buttonText = "cancel"
+
+[node name="areyousure" type="Node2D" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="areyousure"]
+offset_top = 83.0
+offset_right = 400.0
+offset_bottom = 131.0
+text = "are you sure you want to delete this save?
+you won't be able to recover it!"
+label_settings = SubResource("LabelSettings_pkadl")
+horizontal_alignment = 1
+
+[node name="yes" parent="areyousure" instance=ExtResource("6_amthu")]
+offset_left = 116.0
+offset_top = 129.0
+offset_right = 137.0
+offset_bottom = 146.0
+buttonText = "yes"
+
+[node name="no" parent="areyousure" instance=ExtResource("6_amthu")]
+offset_left = 264.0
+offset_top = 129.0
+offset_right = 279.0
+offset_bottom = 146.0
+buttonText = "no"
+
+[node name="optionsMenu" parent="." instance=ExtResource("12_oduev")]
+visible = false
+position = Vector2(98, 2)
+
+[node name="achievementsMenu" parent="." instance=ExtResource("14_pgst0")]
+visible = false
+
+[node name="disclaimer" type="Node2D" parent="."]
+visible = false
+
+[node name="NinePatchRect" type="NinePatchRect" parent="disclaimer"]
+offset_left = 41.0
+offset_top = 21.0
+offset_right = 358.0
+offset_bottom = 276.0
+texture = ExtResource("16_kilqg")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="disclaimer/NinePatchRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 16.0
+offset_right = 315.0
+offset_bottom = 48.0
+text = "disclaimer"
+label_settings = SubResource("LabelSettings_gvndp")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="disclaimer/NinePatchRect"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 59.0
+offset_right = 302.0
+offset_bottom = 237.0
+text = "this game is very performance heavy, and you may experience lag or stutters while playing on the web version of the game. If you do, please go to itch.io and check out the downloadble version of the game, which is much more stable and will offer better performance. Be sure to read the tutorial and have fun!"
+autowrap_mode = 2
+
+[node name="okayDisclaimer" parent="disclaimer/NinePatchRect" instance=ExtResource("6_amthu")]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 225.0
+offset_right = 165.0
+offset_bottom = 242.0
+buttonText = "OK"
+
+[node name="tutorial" type="Node2D" parent="."]
+visible = false
+
+[node name="g" type="NinePatchRect" parent="tutorial"]
+offset_left = 71.0
+offset_top = 9.0
+offset_right = 336.0
+offset_bottom = 295.0
+texture = ExtResource("16_kilqg")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="gobacktutorial" parent="tutorial/g" instance=ExtResource("6_amthu")]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 260.0
+offset_right = 246.0
+offset_bottom = 277.0
+buttonText = "OK"
+
+[node name="g" type="ScrollContainer" parent="tutorial/g"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 14.0
+offset_right = 257.0
+offset_bottom = 254.0
+theme = SubResource("Theme_y2kaf")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="g" type="ColorRect" parent="tutorial/g/g"]
+custom_minimum_size = Vector2(8, 780)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="TutorialControls" type="Sprite2D" parent="tutorial/g/g/g"]
+position = Vector2(119, 316)
+texture = ExtResource("14_bv80d")
+
+[node name="BirdMeat" type="Sprite2D" parent="tutorial/g/g/g"]
+position = Vector2(216, 767)
+texture = ExtResource("15_lq83u")
+
+[node name="Label" type="Label" parent="tutorial/g/g/g"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 638.0
+offset_right = 225.0
+offset_bottom = 711.0
+text = "the goal of the game is to find resources to become stronger, build a cool house, and to eventually beat the 3 bosses. There are lots of ways to go about it though, so experiment and have fun!"
+autowrap_mode = 2
+
+[node name="credits" type="Node2D" parent="."]
+visible = false
+
+[node name="g" type="NinePatchRect" parent="credits"]
+offset_left = 75.0
+offset_top = 44.0
+offset_right = 325.0
+offset_bottom = 295.0
+texture = ExtResource("16_kilqg")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="gobackcredits" parent="credits/g" instance=ExtResource("6_amthu")]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 231.0
+offset_right = 304.0
+offset_bottom = 248.0
+buttonText = "BACK"
+
+[node name="g" type="ScrollContainer" parent="credits/g"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 9.0
+offset_right = 243.0
+offset_bottom = 244.0
+theme = SubResource("Theme_y2kaf")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="g" type="ColorRect" parent="credits/g/g"]
+custom_minimum_size = Vector2(8, 780)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="profile" type="Node2D" parent="credits/g/g/g"]
+
+[node name="icon" type="Sprite2D" parent="credits/g/g/g/profile"]
+position = Vector2(37, 43)
+texture = ExtResource("16_avgr1")
+hframes = 5
+vframes = 4
+
+[node name="name" type="Label" parent="credits/g/g/g/profile"]
+modulate = Color(1, 0.784314, 0.333333, 1)
+offset_left = 75.0
+offset_top = 14.0
+offset_right = 142.0
+offset_bottom = 30.0
+text = "kaiakairos"
+
+[node name="desc" type="Label" parent="credits/g/g/g/profile"]
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 67.0
+text = "programming
+art"
+
+[node name="profile2" type="Node2D" parent="credits/g/g/g"]
+position = Vector2(0, 68)
+
+[node name="icon" type="Sprite2D" parent="credits/g/g/g/profile2"]
+position = Vector2(39, 41)
+texture = ExtResource("16_avgr1")
+hframes = 5
+vframes = 4
+frame = 1
+
+[node name="name" type="Label" parent="credits/g/g/g/profile2"]
+modulate = Color(1, 0.784314, 0.333333, 1)
+offset_left = 75.0
+offset_top = 14.0
+offset_right = 142.0
+offset_bottom = 30.0
+text = "staggernight"
+
+[node name="desc" type="Label" parent="credits/g/g/g/profile2"]
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 67.0
+text = "vanity & armor art
+additional music"
+
+[node name="profile3" type="Node2D" parent="credits/g/g/g"]
+position = Vector2(0, 137)
+
+[node name="icon" type="Sprite2D" parent="credits/g/g/g/profile3"]
+position = Vector2(40, 36)
+texture = ExtResource("16_avgr1")
+hframes = 5
+vframes = 4
+frame = 2
+
+[node name="name" type="Label" parent="credits/g/g/g/profile3"]
+modulate = Color(1, 0.784314, 0.333333, 1)
+offset_left = 75.0
+offset_top = 14.0
+offset_right = 142.0
+offset_bottom = 30.0
+text = "reeez"
+
+[node name="desc" type="Label" parent="credits/g/g/g/profile3"]
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 67.0
+text = "permission to use
+music"
+
+[node name="profile4" type="Node2D" parent="credits/g/g/g"]
+position = Vector2(0, 204)
+
+[node name="icon" type="Sprite2D" parent="credits/g/g/g/profile4"]
+position = Vector2(37, 43)
+texture = ExtResource("16_avgr1")
+hframes = 5
+vframes = 4
+frame = 3
+
+[node name="name" type="Label" parent="credits/g/g/g/profile4"]
+modulate = Color(1, 0.784314, 0.333333, 1)
+offset_left = 75.0
+offset_top = 14.0
+offset_right = 142.0
+offset_bottom = 30.0
+text = "horobol"
+
+[node name="desc" type="Label" parent="credits/g/g/g/profile4"]
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 67.0
+text = "programming help with
+gdextension c++ stuff"
+
+[node name="profile5" type="Node2D" parent="credits/g/g/g"]
+position = Vector2(0, 274)
+
+[node name="icon" type="Sprite2D" parent="credits/g/g/g/profile5"]
+position = Vector2(37, 43)
+texture = ExtResource("16_avgr1")
+hframes = 5
+vframes = 4
+frame = 7
+
+[node name="name" type="Label" parent="credits/g/g/g/profile5"]
+modulate = Color(1, 0.784314, 0.333333, 1)
+offset_left = 75.0
+offset_top = 14.0
+offset_right = 142.0
+offset_bottom = 30.0
+text = "gahburger"
+
+[node name="desc" type="Label" parent="credits/g/g/g/profile5"]
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 67.0
+text = "painting art"
+
+[node name="profile6" type="Node2D" parent="credits/g/g/g"]
+position = Vector2(0, 338)
+
+[node name="icon" type="Sprite2D" parent="credits/g/g/g/profile6"]
+position = Vector2(37, 43)
+texture = ExtResource("16_avgr1")
+hframes = 5
+vframes = 4
+frame = 4
+
+[node name="name" type="Label" parent="credits/g/g/g/profile6"]
+modulate = Color(1, 0.784314, 0.333333, 1)
+offset_left = 75.0
+offset_top = 14.0
+offset_right = 142.0
+offset_bottom = 30.0
+text = "tiltro"
+
+[node name="desc" type="Label" parent="credits/g/g/g/profile6"]
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 67.0
+text = "painting art"
+
+[node name="profile7" type="Node2D" parent="credits/g/g/g"]
+position = Vector2(0, 406)
+
+[node name="icon" type="Sprite2D" parent="credits/g/g/g/profile7"]
+position = Vector2(37, 43)
+texture = ExtResource("16_avgr1")
+hframes = 5
+vframes = 4
+frame = 5
+
+[node name="name" type="Label" parent="credits/g/g/g/profile7"]
+modulate = Color(1, 0.784314, 0.333333, 1)
+offset_left = 75.0
+offset_top = 14.0
+offset_right = 142.0
+offset_bottom = 30.0
+text = "calvin"
+
+[node name="desc" type="Label" parent="credits/g/g/g/profile7"]
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 67.0
+text = "painting art
+vanity art"
+
+[node name="profile8" type="Node2D" parent="credits/g/g/g"]
+position = Vector2(0, 472)
+
+[node name="icon" type="Sprite2D" parent="credits/g/g/g/profile8"]
+position = Vector2(37, 43)
+texture = ExtResource("16_avgr1")
+hframes = 5
+vframes = 4
+frame = 6
+
+[node name="name" type="Label" parent="credits/g/g/g/profile8"]
+modulate = Color(1, 0.784314, 0.333333, 1)
+offset_left = 75.0
+offset_top = 14.0
+offset_right = 142.0
+offset_bottom = 30.0
+text = "octo"
+
+[node name="desc" type="Label" parent="credits/g/g/g/profile8"]
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 67.0
+text = "painting art"
+
+[node name="profile9" type="Node2D" parent="credits/g/g/g"]
+position = Vector2(0, 543)
+
+[node name="icon" type="Sprite2D" parent="credits/g/g/g/profile9"]
+position = Vector2(37, 43)
+texture = ExtResource("16_avgr1")
+hframes = 5
+vframes = 4
+frame = 9
+
+[node name="name" type="Label" parent="credits/g/g/g/profile9"]
+modulate = Color(1, 0.784314, 0.333333, 1)
+offset_left = 75.0
+offset_top = 14.0
+offset_right = 142.0
+offset_bottom = 30.0
+text = "lyn"
+
+[node name="desc" type="Label" parent="credits/g/g/g/profile9"]
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 67.0
+text = "painting art"
+
+[node name="profile10" type="Node2D" parent="credits/g/g/g"]
+position = Vector2(0, 620)
+
+[node name="icon" type="Sprite2D" parent="credits/g/g/g/profile10"]
+position = Vector2(39, 39)
+texture = ExtResource("16_avgr1")
+hframes = 5
+vframes = 4
+frame = 8
+
+[node name="name" type="Label" parent="credits/g/g/g/profile10"]
+modulate = Color(1, 0.784314, 0.333333, 1)
+offset_left = 75.0
+offset_top = 14.0
+offset_right = 142.0
+offset_bottom = 30.0
+text = "eelsocks"
+
+[node name="desc" type="Label" parent="credits/g/g/g/profile10"]
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 67.0
+text = "painting art"
+
+[node name="profile11" type="Node2D" parent="credits/g/g/g"]
+position = Vector2(0, 692)
+
+[node name="icon" type="Sprite2D" parent="credits/g/g/g/profile11"]
+position = Vector2(39, 39)
+texture = ExtResource("16_avgr1")
+hframes = 5
+vframes = 4
+frame = 13
+
+[node name="name" type="Label" parent="credits/g/g/g/profile11"]
+modulate = Color(1, 0.784314, 0.333333, 1)
+offset_left = 75.0
+offset_top = 14.0
+offset_right = 142.0
+offset_bottom = 30.0
+text = "orkork"
+
+[node name="desc" type="Label" parent="credits/g/g/g/profile11"]
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 67.0
+text = "painting art"
+
+[node name="title" type="Label" parent="credits"]
+offset_left = 76.0
+offset_top = 8.0
+offset_right = 328.0
+offset_bottom = 76.0
+text = "CREDITS"
+label_settings = SubResource("LabelSettings_ukjca")
+horizontal_alignment = 1
+
+[node name="joinLobbyScreen" type="Node2D" parent="."]
+visible = false
+script = ExtResource("18_72svt")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="joinLobbyScreen"]
+offset_left = 6.0
+offset_top = 41.0
+offset_right = 394.0
+offset_bottom = 256.0
+texture = ExtResource("16_kilqg")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="joinLobbyScreen/NinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 29.0
+offset_right = 380.0
+offset_bottom = 208.0
+theme = SubResource("Theme_y2kaf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="joinLobbyScreen/NinePatchRect/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="previewText" type="Label" parent="joinLobbyScreen"]
+offset_left = 7.0
+offset_top = 123.0
+offset_right = 393.0
+offset_bottom = 152.0
+label_settings = SubResource("LabelSettings_mjk8v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="joinLobbyScreen"]
+offset_left = 6.0
+offset_top = 261.0
+offset_right = 299.0
+offset_bottom = 294.0
+texture = ExtResource("16_kilqg")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="joinLobbyScreen"]
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 394.0
+offset_bottom = 43.0
+text = "Lobby List"
+label_settings = SubResource("LabelSettings_4l11p")
+horizontal_alignment = 1
+
+[node name="textEdit" type="TextEdit" parent="joinLobbyScreen"]
+offset_left = 16.0
+offset_top = 267.0
+offset_right = 294.0
+offset_bottom = 291.0
+theme_override_fonts/font = ExtResource("9_j42vm")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_cljap")
+theme_override_styles/focus = SubResource("StyleBoxFlat_r6drp")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_q3tcx")
+placeholder_text = "Lobby ID"
+caret_blink = true
+
+[node name="joinFromID" parent="joinLobbyScreen" instance=ExtResource("6_amthu")]
+offset_left = 316.0
+offset_top = 269.0
+offset_right = 384.0
+offset_bottom = 286.0
+buttonText = "Join Lobby"
+
+[node name="reloadButton" parent="joinLobbyScreen" instance=ExtResource("6_amthu")]
+offset_left = 342.0
+offset_top = 49.0
+offset_right = 383.0
+offset_bottom = 66.0
+buttonText = "reload"
+
+[node name="back" parent="joinLobbyScreen" instance=ExtResource("6_amthu")]
+offset_left = 17.0
+offset_top = 49.0
+offset_right = 46.0
+offset_bottom = 66.0
+buttonText = "back"
+
+[node name="mods" type="Node2D" parent="."]
+visible = false
+
+[node name="backSave" parent="mods" instance=ExtResource("6_amthu")]
+offset_left = 357.0
+offset_top = 15.0
+offset_right = 386.0
+offset_bottom = 32.0
+buttonText = "back"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="mods"]
+offset_left = 6.0
+offset_top = 43.0
+offset_right = 396.0
+offset_bottom = 297.0
+theme = SubResource("Theme_ykq8e")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="mods/ScrollContainer"]
+layout_mode = 2
+
+[node name="openDirectory" type="Button" parent="mods"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 17.0
+offset_top = 10.0
+offset_right = 40.0
+offset_bottom = 33.0
+tooltip_text = "open save location"
+
+[node name="Folder" type="Sprite2D" parent="mods/openDirectory"]
+position = Vector2(12, 12)
+texture = ExtResource("8_5uoko")
+
+[node name="reloadSaves" type="Button" parent="mods"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 50.0
+offset_top = 10.0
+offset_right = 73.0
+offset_bottom = 33.0
+tooltip_text = "refresh saves"
+
+[node name="Folder" type="Sprite2D" parent="mods/reloadSaves"]
+position = Vector2(12, 12)
+texture = ExtResource("10_xaeay")
+
+[node name="MouseIcon" type="Sprite2D" parent="."]
+position = Vector2(430, 268)
+texture = ExtResource("8_d6c0u")
+centered = false
+
+[node name="Wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ny3be")
+volume_db = -16.0
+autoplay = true
+bus = &"AMBIENT"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ailx1")
+volume_db = -12.0
+bus = &"MUSIC"
+
+[node name="joiningLobby" type="Node2D" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="joiningLobby"]
+offset_top = 122.0
+offset_right = 400.0
+offset_bottom = 179.0
+text = "Joining world..."
+label_settings = SubResource("LabelSettings_pkadl")
+horizontal_alignment = 1
+
+[node name="gulp" parent="joiningLobby" instance=ExtResource("6_amthu")]
+visible = false
+offset_left = 190.0
+offset_top = 150.0
+offset_right = 206.0
+offset_bottom = 167.0
+buttonText = "OK"
+
+[connection signal="pressed" from="mainButtons/buttons/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="mainButtons/buttons/lobbies" to="." method="_on_lobbies_pressed"]
+[connection signal="pressed" from="mainButtons/buttons/medals" to="." method="_on_medals_pressed"]
+[connection signal="pressed" from="mainButtons/buttons/tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="mainButtons/buttons/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="mainButtons/buttons/discord" to="." method="_on_discord_pressed"]
+[connection signal="pressed" from="mainButtons/buttons/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="mainButtons/buttons/mods" to="." method="_on_mods_pressed"]
+[connection signal="pressed" from="mainButtons/buttons/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="savefiles/backSave" to="." method="_on_back_save_pressed"]
+[connection signal="pressed" from="savefiles/openDirectory" to="." method="_on_open_directory_pressed"]
+[connection signal="pressed" from="savefiles/reloadSaves" to="." method="_on_reload_saves_pressed"]
+[connection signal="text_changed" from="createNewWorld/TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="createNewWorld/confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="createNewWorld/cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="createNewWorld/worldType" to="." method="_on_world_type_pressed"]
+[connection signal="text_changed" from="renameWorld/renameTextEdit" to="." method="_on_rename_text_edit_text_changed"]
+[connection signal="pressed" from="renameWorld/renameconfirm" to="." method="_on_renameconfirm_pressed"]
+[connection signal="pressed" from="renameWorld/renamecancel" to="." method="_on_renamecancel_pressed"]
+[connection signal="pressed" from="areyousure/yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="areyousure/no" to="." method="_on_cancel_pressed"]
+[connection signal="menuClosed" from="optionsMenu" to="." method="_on_options_menu_menu_closed"]
+[connection signal="menuClosed" from="achievementsMenu" to="." method="_on_achievements_menu_menu_closed"]
+[connection signal="pressed" from="disclaimer/NinePatchRect/okayDisclaimer" to="." method="_on_okay_disclaimer_pressed"]
+[connection signal="pressed" from="tutorial/g/gobacktutorial" to="." method="_on_gobacktutorial_pressed"]
+[connection signal="pressed" from="credits/g/gobackcredits" to="." method="_on_gobackcredits_pressed"]
+[connection signal="text_changed" from="joinLobbyScreen/textEdit" to="joinLobbyScreen" method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="joinLobbyScreen/joinFromID" to="joinLobbyScreen" method="_on_join_from_id_pressed"]
+[connection signal="pressed" from="joinLobbyScreen/reloadButton" to="joinLobbyScreen" method="_on_reload_button_pressed"]
+[connection signal="pressed" from="joinLobbyScreen/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="mods/backSave" to="." method="_on_back_save_pressed"]
+[connection signal="pressed" from="mods/openDirectory" to="." method="_on_open_directory_pressed"]
+[connection signal="pressed" from="mods/reloadSaves" to="." method="_on_reload_saves_pressed"]

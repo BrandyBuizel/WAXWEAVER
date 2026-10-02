@@ -1,0 +1,150 @@
+[gd_scene load_steps=8 format=3 uid="uid://byyyl3a5c13iq"]
+
+[ext_resource type="Texture2D" uid="uid://csibj827o7h0h" path="res://ui_scenes/mainMenu/saveSlot/rect.png" id="2_m13jp"]
+[ext_resource type="PackedScene" uid="uid://d0j06gpiq8jxo" path="res://ui_scenes/mainMenu/textbutton/text_button.tscn" id="3_rwxn3"]
+[ext_resource type="Texture2D" uid="uid://cf6d0p2lx87r6" path="res://ui_scenes/mainMenu/saveSlot/downloadsaveweb.png" id="4_c35rv"]
+[ext_resource type="Texture2D" uid="uid://bd3dp17p0latx" path="res://modweaver/iconM.png" id="5_8owsq"]
+
+[sub_resource type="Animation" id="Animation_y2jia"]
+resource_name = "default"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [1],
+"method": &"setAllFrames"
+}, {
+"args": [2],
+"method": &"setAllFrames"
+}, {
+"args": [3],
+"method": &"setAllFrames"
+}, {
+"args": [4],
+"method": &"setAllFrames"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6dw8q"]
+_data = {
+"default": SubResource("Animation_y2jia")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_dnryp"]
+outline_size = 3
+outline_color = Color(0.0470588, 0.0470588, 0.0470588, 1)
+
+[node name="modslot" type="Container"]
+custom_minimum_size = Vector2(380, 50)
+offset_right = 109.0
+offset_bottom = 49.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(380, 50)
+layout_mode = 2
+texture = ExtResource("2_m13jp")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="emptyslot" type="Label" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.372549)
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="createNew" type="Node2D" parent="."]
+visible = false
+
+[node name="create" parent="createNew" instance=ExtResource("3_rwxn3")]
+offset_left = 318.0
+offset_top = 16.0
+offset_right = 359.0
+offset_bottom = 33.0
+buttonText = "create"
+
+[node name="info" type="Node2D" parent="."]
+
+[node name="download" type="Sprite2D" parent="info"]
+visible = false
+position = Vector2(357, 25)
+texture = ExtResource("4_c35rv")
+
+[node name="download" type="Button" parent="info/download"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="info"]
+libraries = {
+"": SubResource("AnimationLibrary_6dw8q")
+}
+autoplay = "default"
+speed_scale = 1.8
+
+[node name="edit" parent="info" instance=ExtResource("3_rwxn3")]
+offset_left = 253.0
+offset_top = 17.0
+offset_right = 278.0
+offset_bottom = 34.0
+buttonText = "edit"
+
+[node name="settings" parent="info" instance=ExtResource("3_rwxn3")]
+offset_left = 307.0
+offset_top = 17.0
+offset_right = 359.0
+offset_bottom = 34.0
+buttonText = "settings"
+
+[node name="h" type="HBoxContainer" parent="info"]
+offset_left = 46.0
+offset_top = 5.0
+offset_right = 255.0
+offset_bottom = 45.0
+alignment = 1
+
+[node name="modName" type="Label" parent="info/h"]
+layout_mode = 2
+text = "example name"
+label_settings = SubResource("LabelSettings_dnryp")
+
+[node name="sep" type="Label" parent="info/h"]
+self_modulate = Color(1, 1, 1, 0.372549)
+layout_mode = 2
+text = "  "
+horizontal_alignment = 1
+
+[node name="verison" type="Label" parent="info/h"]
+self_modulate = Color(1, 1, 1, 0.372549)
+layout_mode = 2
+text = "V.0.0"
+horizontal_alignment = 1
+
+[node name="icon" type="TextureRect" parent="info"]
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 46.0
+offset_bottom = 44.0
+texture = ExtResource("5_8owsq")
+expand_mode = 2
+
+[connection signal="pressed" from="createNew/create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="info/download/download" to="." method="_on_download_pressed"]
+[connection signal="pressed" from="info/edit" to="." method="_on_text_button_pressed"]
+[connection signal="pressed" from="info/settings" to="." method="_on_delete_pressed"]

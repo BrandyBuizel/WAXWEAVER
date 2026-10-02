@@ -1,0 +1,2 @@
+mods
+items don't disappear on deletion of chunks
