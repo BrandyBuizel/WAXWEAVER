@@ -1,6 +1,8 @@
 TO BUILD FOR WINDOWS:
 
-scons platform=windows
+scons platform=windows custom_api_file=extension_api.json 
+
+
 
 add "target=template_release" to build for release
 

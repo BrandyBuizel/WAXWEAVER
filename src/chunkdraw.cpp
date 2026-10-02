@@ -1,6 +1,6 @@
 #include "chunkdraw.h"
 #include <godot_cpp/core/class_db.hpp>
-#include "block.h"
+
 
 using namespace godot;
 
@@ -715,8 +715,7 @@ Dictionary CHUNKDRAW::runBreak(PLANETDATA *planet,Vector2i pos,int x, int y, int
 }
 
 void CHUNKDRAW::getBorderImage( const char* file ) {
-    
-    texture = ResourceLoader::get_singleton()->load(file);  // ERROR
+    texture = ResourceLoader::get_singleton()->load(file);
 
     texImage = texture->get_image();
     texImage->convert(Image::FORMAT_RGBA8);
@@ -724,7 +723,7 @@ void CHUNKDRAW::getBorderImage( const char* file ) {
 }
 
 void CHUNKDRAW::getBorderMask( const char* file ) {
-    maskHold = ResourceLoader::get_singleton()->load(file);  // ERROR
+    maskHold = ResourceLoader::get_singleton()->load(file);
 
     maskBorder = maskHold->get_image();
     maskBorder->convert(Image::FORMAT_RGBA8);
@@ -732,7 +731,7 @@ void CHUNKDRAW::getBorderMask( const char* file ) {
 }
 
 void CHUNKDRAW::getWaterImage( const char* file ) {
-    watertexture = ResourceLoader::get_singleton()->load(file); // ERROR
+    watertexture = ResourceLoader::get_singleton()->load(file);
 
     watertexImage = watertexture->get_image();
     watertexImage->convert(Image::FORMAT_RGBA8);
