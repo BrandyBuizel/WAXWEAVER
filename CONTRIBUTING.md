@@ -2,9 +2,9 @@
 ![waxweaver](https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3599070/extras/444bcc1631004be78059731eb4e44089.avif?t=1766893565)
 ### [community edition]
 
-- [ ] get successful, reproducable compiling code
-- [ ] prep moddin tools
-- [ ] a third task
+- [ ] get successful, reproducable compiling game code
+- [ ] prep moddin tools (branch)
+- [ ] aget running on macOS (.dmg)
 
 ## Table of Contents
 
@@ -43,8 +43,10 @@ Improving documentation is a great way to learn the codebase. Adding documentati
 ## Reporting Bugs
 Start an "Issue"
 
+If you notice a bug, file it. discovering bugs is important, but squashing bugs as a team means we'll just get better at reading the code and improving on it!
+
 ## Guidelines for Commit Messages
 Nothing you write in the commit messages should EVER warrant a section like this existing and describing every way you can be nasty. Just don't be awful, please.
 
 ## Pull Requests
-Submit away!
+Submit away! You can request to be added to the repo but submitting your first PR
