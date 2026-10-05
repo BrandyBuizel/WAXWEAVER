@@ -5,3 +5,4 @@ godot-cpp/
 #Ignore .godot folder
 theSandbox/.godot
 theSandbox/bin/~libgdexample.windows.template_debug.x86_64.dll
+.DS_Store

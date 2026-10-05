@@ -32,7 +32,8 @@ GOTO End
 
 :MacOS
 scons platform=macos
-scons platform=macos custom_api_file=gdextension/extension_api.json
+scons platform=macos arch=arm64 generate_bundle=yes custom_api_file=gdextension/extension_api.json
+
 GOTO End
 
 :End
