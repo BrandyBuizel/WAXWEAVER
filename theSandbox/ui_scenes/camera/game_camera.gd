@@ -76,7 +76,6 @@ func changeBG(file):
 	if file == null:
 		return
 	
-	
 	# create new bg from file
 	var newBG = load(file).instantiate()
 	newBG.modulate.a = 0.0
