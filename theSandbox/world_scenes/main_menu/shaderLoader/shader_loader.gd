@@ -53,6 +53,8 @@ var motd :Array[String]= [ # messages to display when opening the window
 	"you can reach me at gabeN at valve software dot com",
 	"tiddlywinks...",
 	"tobuscus adventures",
+	"macs are for dumbs and nerds and jocks",
+	"newgrounds 4ever",
 ]
 
 
