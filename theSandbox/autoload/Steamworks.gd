@@ -16,7 +16,7 @@ func _ready():
 func unlockmedal(medalID:String):
 	Steam.setAchievement(medalID)
 	Steam.storeStats()
-	print(medalID + " unlcoked on steam!")
+	print(medalID + " unlocked on steam!")
 
 func _process(delta: float) -> void:
 	Steam.run_callbacks()
