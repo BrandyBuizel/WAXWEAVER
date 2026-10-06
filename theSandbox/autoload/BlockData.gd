@@ -19,15 +19,25 @@ var itemFrames :Dictionary = {}
 var armorStands :Dictionary = {}
 
 func _ready():
-	var ins = CHUNKDRAW.new()
+	var ins = ClassDB.instantiate("CHUNKDRAW")
+	if ins == null:
+		push_error("Failed to instantiate CHUNKDRAW")
+		return
 	theChunker = ins
 	add_child(ins)
 	
-	var g = PLANETGEN.new()
+	var g = ClassDB.instantiate("PLANETGEN")
+	if g == null:
+		push_error("Failed to instantiate PLANETGEN")
+		return
 	theGenerator = g
 	add_child(g)
 	
-	lookup = theChunker.returnLookup()
+	if theChunker != null and theChunker.has_method("returnLookup"):
+		lookup = theChunker.returnLookup()
+	else:
+		lookup = null
+		push_warning("CHUNKDRAW instance is missing returnLookup()")
 	
 	#theChunker.attemptSpawnEnemy.connect(attemptSpawnEnemy)
 
