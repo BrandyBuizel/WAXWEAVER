@@ -406,15 +406,15 @@ func doBlockAction(action:String,tileX:int,tileY:int,planet):
 				var type = 0
 				for i in range(25):
 					var id = chestData[i][0]
-					var data = ItemData.getItem(id)
-					if data is ItemBlock:
+					var chestItem = ItemData.getItem(id)
+					if chestItem is ItemBlock:
 						slot = i
 						break
-					if data is ItemPlant:
+					if chestItem is ItemPlant:
 						slot = i
 						type = 1
 						break
-					if data is ItemTypeBlock:
+					if chestItem is ItemTypeBlock:
 						slot = i
 						type = 2
 						break
@@ -437,15 +437,15 @@ func doBlockAction(action:String,tileX:int,tileY:int,planet):
 				var placePos :Vector2i= Vector2i(tileX,tileY)+Vector2i(Vector2(1,0).rotated( planet.DATAC.getInfoData(tileX,tileY) * (PI/2) ))
 				
 				var blockID = 2
-				var data = ItemData.getItem(itemID)
+				var placedItem = ItemData.getItem(itemID)
 				match type:
 					0:
-						blockID = data.blockID
+						blockID = placedItem.blockID
 					1:
-						blockID = data.blockToPlace
+						blockID = placedItem.blockToPlace
 					2:
-						blockID = data.blockID
-						planet.DATAC.setInfoData(placePos.x,placePos.y,data.multiTileId)
+						blockID = placedItem.blockID
+						planet.DATAC.setInfoData(placePos.x,placePos.y,placedItem.multiTileId)
 				
 				planet.editTiles( {placePos: blockID},true )
 				
@@ -660,6 +660,7 @@ func takeBigSreenShot(planet:Planet):
 			
 			bigimage.set_pixel(x,y, baseColor * lightColor)
 	
+	# export screenshot code
 	var filename = str( int(Time.get_unix_time_from_system()) )
 	DirAccess.make_dir_recursive_absolute("user://screenshots/")
 	bigimage.save_png("user://screenshots/" + filename + ".png")
