@@ -10,6 +10,8 @@ var remember: bool = true;
 
 var user: NewgroundsUser = null;
 
+var _first_set = false;
+
 func reset():
 	id = ""
 	expired = false
@@ -43,6 +45,9 @@ func setFromDictionary(d:Dictionary):
 		user = NewgroundsUser.fromDict(u);
 	if has_user != had_user:
 		dirty = true
+	if !_first_set:
+		dirty = true;
+		_first_set = true;
 	return dirty
 	
 
@@ -80,6 +85,3 @@ func load():
 		var node_data = json.get_data()
 		for i in node_data.keys():
 			set(i, node_data[i])
-
-
-

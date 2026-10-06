@@ -4,7 +4,7 @@
 
 - [ ] get successful, reproducable compiling game code
 - [ ] prep moddin tools (branch)
-- [ ] aget running on macOS (.dmg)
+- [ ] get running on macOS (.dmg)
 
 ## Table of Contents
 

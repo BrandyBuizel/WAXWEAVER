@@ -40,9 +40,9 @@ Saving="*res://autoload/Saving.gd"
 Options="*res://autoload/Options.gd"
 Ngio="res://autoload/ngio.gd"
 AchievementData="*res://autoload/AchievementData.gd"
+Network="*res://autoload/Network.gd"
 NG="*res://addons/newgrounds/scripts/newgrounds.tscn"
 NGCloudSave="*res://addons/newgrounds/scripts/newgrounds_cloudsave.gd"
-Network="*res://autoload/Network.gd"
 
 [debug]
 
