@@ -168,7 +168,7 @@ func _on_yes_pressed():
 
 
 func _on_discord_pressed():
-	Saving.open_site("https://discord.com/invite/d6N8tbgW98")
+	Saving.open_site("https://discord.com/invite/6wE3zsCK")
 
 
 func _on_open_directory_pressed():
