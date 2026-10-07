@@ -23,7 +23,7 @@ var chunkScene = preload("res://world_scenes/chunk/chunk.tscn")
 
 var centerPoint = Vector2.ZERO
 
-#Noise
+# noise
 var noise = FastNoiseLite.new()
 
 var tick = 0
@@ -34,7 +34,7 @@ var tickAlive = 0
 
 signal doneEditingTiles
 
-# Chest Data
+# chest data
 var chestDictionary :Dictionary= {}
 
 var planetTypeOverride :String = ""
@@ -45,7 +45,6 @@ func _ready():
 		position = orbiting.position + Vector2(orbitDistance,0).rotated(orbitPeriod)
 		position.x = int(position.x)
 		position.y = int(position.y)
-	
 	
 	set_physics_process(false)
 	generateEmptyArray()
@@ -61,7 +60,6 @@ func _ready():
 			editTiles(structures)
 			#print("\nROLL " + str(i + 1))
 			#print(structures)
-		
 	
 ########################################################################
 ############################## ORBITING ################################
@@ -129,14 +127,14 @@ func _physics_process(delta):
 		if changesArray[0]:
 			chunk.drawLiquid()
 		
-		#Updates light
+		# updates light
 		#shouldUpdateLight += int(chunk.MUSTUPDATELIGHT)
 		chunk.MUSTUPDATELIGHT = false
 		
 		if committedChanges.size() > 0:
 			editTiles(committedChanges)
 	
-	#if shouldUpdateLight > 0 and is_instance_valid(GlobalRef.player):
+	# if shouldUpdateLight > 0 and is_instance_valid(GlobalRef.player):
 	GlobalRef.player.updateLightStatic()
 
 func editTiles(changeCommit,doneByPlayer:bool=false,multiplayer_from:int=0,packetType:int=0):
@@ -182,7 +180,7 @@ func editTiles(changeCommit,doneByPlayer:bool=false,multiplayer_from:int=0,packe
 		if !chunksToUpdate.has(chunkVector):
 			chunksToUpdate.append(chunkVector)
 		
-		#Theres gotta be a way to clean this up
+		# there's gotta be a way to clean this up
 		var morganfreemansayingtrue := false
 		if int(change.x) % 8 == 0:
 			if !chunksToUpdate.has(chunkVector + Vector2( -1 , 0 )):
@@ -348,7 +346,7 @@ func getBlockRoundedDistance(x,y):
 
 func airOrCaveAir(x,y):
 	var surface = max(SIZEINCHUNKS*2, (SIZEINCHUNKS*4) - 128 )
-	#Returns 1 for cave air or 0 for surface air
+	# returns 1 for cave air or 0 for surface air
 	return int(getBlockDistance(x,y) <= surface - 2)
 
 func posToTile(pos):
@@ -370,7 +368,7 @@ func pickRandomValidSpot():
 	for attempt in range(20):
 		var randKey = chunkDictionary.keys()[randi() % chunkDictionary.size()]
 		var chunk = chunkDictionary[randKey]
-		#if chunk.onScreen:
+		# if chunk.onScreen:
 		#	
 		continue
 		var pos = chunk.pos * 8
