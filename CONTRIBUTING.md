@@ -2,9 +2,10 @@
 ![waxweaver](https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3599070/extras/444bcc1631004be78059731eb4e44089.avif?t=1766893565)
 ### [community edition]
 
-- [ ] get successful, reproducable compiling game code
+- [x] get successful, reproducable compiling game code
 - [ ] prep moddin tools (branch)
-- [ ] get running on macOS (.dmg)
+- [x] get running on macOS (.dmg)
+- [ ] fix world generation step, compile c++ better
 
 ## Table of Contents
 
