@@ -57,7 +57,7 @@ func generateNewSystem():
 	for planet in cosmicBodyContainer.get_children():
 		planet.queue_free()
 	
-	#Create sun
+	# create sun
 	var sun = planetScene.instantiate()
 	sun.planetType = "sun"
 	sun.SIZEINCHUNKS = 8
@@ -65,7 +65,7 @@ func generateNewSystem():
 	cosmicBodyContainer.add_child(sun)
 	rootPlanet = sun
 	
-	#  create Forest
+	# create forest
 	var forestPlanet = planetScene.instantiate()
 	forestPlanet.planetType = "forest"
 	forestPlanet.orbiting = sun
@@ -79,7 +79,7 @@ func generateNewSystem():
 	
 	cosmicBodyContainer.add_child(forestPlanet)
 	
-	#  create moon
+	# create moon
 	var forestMoon = planetScene.instantiate()
 	forestMoon.planetType = "lunar"
 	forestMoon.orbiting = forestPlanet
@@ -91,7 +91,7 @@ func generateNewSystem():
 	
 	cosmicBodyContainer.add_child(forestMoon)
 	
-	#  create arid planet
+	# create arid planet (scrapped multiple planets)
 	#var aridPlanet = planetScene.instantiate()
 	#aridPlanet.planetType = "arid"
 	#aridPlanet.orbiting = sun
