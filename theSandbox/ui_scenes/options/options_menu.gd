@@ -47,9 +47,6 @@ func closeMenu():
 	hide()
 	emit_signal("menuClosed")
 
-
-
-
 func _on_sfxslide_value_changed(value):
 	Options.options["sfxVolume"] = value
 	Options.applyOptions()

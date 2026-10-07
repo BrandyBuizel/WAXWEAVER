@@ -26,7 +26,6 @@ var criticalStrikeChance :int = 4 # chance out of 100
 var respawnWait :float = 8.0 # how long until player respawns
 var miningMultiplier :float = 1.0 # additional mining speed
 
-
 var trinkets :Array[int]= [] # array of trinket ids
 var specialProperties :Array[String] = [] # array of special tags to give player
 var statusImmunities :Array[String]= []

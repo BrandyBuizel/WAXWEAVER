@@ -60,8 +60,6 @@ func _on_lobby_created(connect:int, this_lobby_id:int):
 		emit_signal("successfullyCreatedLobby")
 		var set_relay: bool = Steam.allowP2PPacketRelay(true)
 		
-		
-		
 		isMultiplayerGame = true
 		
 	else:
@@ -405,5 +403,3 @@ func checkIfPlayerInLobby(id:int):
 		if member["steam_id"] == id:
 			return true
 	return false
-
-

@@ -10,25 +10,21 @@ extends Node2D
 const CHUNKSIZE :int= 8
 
 var pos :Vector2= Vector2.ZERO
-
 var onScreen :bool= false
-
 var id4 :int= 0
 
 var MUSTUPDATELIGHT :bool= false
 
 var planet :Planet= null
-
 var drawnForFirstTime :bool = false
 
 func _ready():
-	
 	planet = get_parent().get_parent()
 	
 	pos = position
 	position = (pos * 64) - Vector2(planet.SIZEINCHUNKS*32,32*planet.SIZEINCHUNKS)
 	
-	#BlockData.theChunker.resetLight(planet.DATAC,Vector2i(pos))
+	# chunk variant used for tick timing/lighting state.
 	id4 = (int(pos.x) % 2)+((int(pos.y) % 2)*2)
 	
 	set_process(false)
@@ -37,22 +33,19 @@ func _ready():
 	drawData()
 	var d :Dictionary= BlockData.theChunker.runOnLoad(planet.DATAC,Vector2i(pos))
 	planet.editTiles(d)
-	
-	
+
 func tickUpdate():
-	
 	MUSTUPDATELIGHT = true
-	# call c++ and return
+	# call c++ chunkcode and return
 	return BlockData.theChunker.tickUpdate(planet.DATAC,pos,onScreen,GlobalRef.daylightMult)
 
 func drawData():
-	
-	#CreateShape
+	# redraw the chunk's collision shape
 	var shape = RectangleShape2D.new()
 	shape.size = Vector2(8,8)
 	clearCollisions()
 
-	# Call c++
+	# use c++ to generate the textures for the chunk's layers
 	var images = BlockData.theChunker.generateTexturesFromData(planet.DATAC,pos,body,shape,false)
 	mainLayerSprite.texture = ImageTexture.create_from_image(images[0])
 	backLayerSprite.texture = ImageTexture.create_from_image(images[1])
@@ -62,6 +55,7 @@ func drawData():
 	drawLiquid()
 	return
 
+# liquid blocks drawn separately to allow for animation and transparency
 func drawLiquid():
 	var images = BlockData.theChunker.drawLiquid(planet.DATAC,pos,false)
 	waterLayerSprite.texture = ImageTexture.create_from_image(images[0])
@@ -74,15 +68,13 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 	onScreen = true
 	mainLayerSprite.visible = onScreen
 	backLayerSprite.visible = onScreen
-	
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	onScreen = false
 	mainLayerSprite.visible = onScreen
 	backLayerSprite.visible = onScreen
-	
-	
-#debug
+
+# debug show/hide icon when testing
 func flicker(visshow):
 	$Icon.visible = visshow
 

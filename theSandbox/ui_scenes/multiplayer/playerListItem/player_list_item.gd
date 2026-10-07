@@ -1,9 +1,12 @@
 extends Control
 
+# current steam user selected on list
 var playerID :int = 0
-var username :String = "Player"
+var username :String = "Player" # default name if Steam API fails to fetch the real one
 
+# periodic avatar refresh timer
 var tick :float = 0.0
+# random offset to stagger reloads across multiple players
 var offset :int = 0
 
 func _ready():
@@ -13,8 +16,10 @@ func _ready():
 	Steam.connect("avatar_loaded",onAvatarLoaded)
 	Steam.getPlayerAvatar(2,playerID)
 	
+	# wait and check if player is lobby host
 	await get_tree().create_timer(0.5).timeout
 	
+	# show the crown on the host's name
 	$Crown.visible = playerID == Network.lobby_host
 
 func _process(delta):
@@ -32,6 +37,7 @@ func updateUsername(id,flags):
 func onAvatarLoaded(id,width,data):
 	if id != playerID:
 		return
+	# convert steam profile into an image texture
 	var img = Image.create_from_data(width,width,false,Image.FORMAT_RGBA8,data)
 	var texture = ImageTexture.create_from_image(img)
 	$TextureRect.texture = texture

@@ -1,7 +1,7 @@
 extends Node
 
 ########### GAME INFO #################
-var version :float = 3.1
+var version :float = 3.2
 
 ############# REFERENCE ###############
 
@@ -41,6 +41,7 @@ var daylightMult :float = 1.0
 var conveyorspeed :float= 30.0
 
 var cheatsEnabled :bool= false
+
 ## prevents mimic spawns until player has opened a chest
 var playerHasInteractedWithChest :bool= false
 
@@ -96,6 +97,7 @@ func _process(delta):
 	var wave = sin( ( currentTime * PI ) / 0.5 ) + 0.5
 	daylightMult = clamp( wave,0.0,1.0 )
 	
+	## double-check night is over
 	if isNight() != isNight and !isNight():
 		emit_signal("newDay")
 		print("new day")

@@ -100,7 +100,6 @@ var lastLadderDir :int = 0
 ########################### BASIC FUNTIONS ###########################
 ######################################################################
 
-
 func _ready():
 	GlobalRef.player = self
 	GlobalRef.playerHC = healthComponent

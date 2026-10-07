@@ -80,8 +80,8 @@ func _process(delta):
 		else:
 			spaceFlightMaxSpeed = lerp( spaceFlightMaxSpeed, 2000.0,0.5 )
 	
-	#if dir == Vector2.ZERO:
-	#	velocity = Vector2.ZERO
+	# if dir == Vector2.ZERO:
+	# velocity = Vector2.ZERO
 	
 	velocity = vel.rotated(rotation)
 	
@@ -102,9 +102,9 @@ func _process(delta):
 		
 		targetRot = [0,1,3,2][dot1 + dot2]
 		rotation = lerp_angle(rotation,targetRot*(PI/2),0.04)
-	#elif active:
-	#	var rotDir = int(Input.is_action_pressed("rotateShipRight")) - int(Input.is_action_pressed("rotateShipLeft"))
-	#	rotate(rotDir * 1.0 * delta)
+		# elif active:
+		#var rotDir = int(Input.is_action_pressed("rotateShipRight")) - int(Input.is_action_pressed("rotateShipLeft"))
+		#rotate(rotDir * 1.0 * delta)
 	
 	else:
 		rotation = lerp_angle(rotation,0.0,0.008)
@@ -164,7 +164,6 @@ func createChunks():
 			allChunks.append(ins)
 			chunkContainer.add_child(ins)
 			
-
 
 ########################################################################
 ########################## CHUNK SIMULATION ############################

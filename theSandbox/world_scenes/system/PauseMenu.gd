@@ -15,11 +15,11 @@ func _process(delta):
 	$lastsave.text = "last saved: " + str(secsSinceSave) + "s ago"
 	$MouseIcon.position = get_viewport().get_mouse_position()
 
-
+# save game
 func _on_savegame_pressed():
 	parent.saveGameToFile()
 
-
+# unpause
 func _on_unpause_pressed():
 	get_tree().paused = false
 	hide()
@@ -27,7 +27,7 @@ func _on_unpause_pressed():
 	$PlayerList.show()
 	$achievementsMenu.hide()
 
-
+# save and quit
 func _on_saveandquit_pressed():
 	parent.saveGameToFile()
 	get_tree().paused = false
@@ -41,13 +41,12 @@ func _on_saveandquit_pressed():
 	
 	get_tree().change_scene_to_file("res://ui_scenes/mainMenu/main_menu.tscn")
 
-
-
+# options menu
 func _on_options_pressed():
 	$optionsMenu.visible = !$optionsMenu.visible
 	$PlayerList.visible = !$optionsMenu.visible
 
-
+# medals list
 func _on_medals_pressed():
 	$achievementsMenu.clear()
 	$achievementsMenu.initializeAchievements()
@@ -57,7 +56,7 @@ func _on_medals_pressed():
 func _on_options_menu_menu_closed():
 	$PlayerList.visible = true
 
-
+# multiplayer lobby code
 func _on_create_lobby_menu_pressed():
 	if Network.isMultiplayerGame:
 		return

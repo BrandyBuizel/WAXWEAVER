@@ -90,6 +90,7 @@ func checkforgamesave():
 	return false
 			
 
+# define modes of play
 func getWorldTypeName() -> String:
 	match worldType:
 		0:

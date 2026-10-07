@@ -46,7 +46,7 @@ func _ready():
 	
 	await get_tree().create_timer(5.0).timeout
 	
-	AchievementData.unlockMedal("openGame")
+	AchievementData.unlockMedal("openGame") # test chivo
 
 func generateNewSystem():
 	
@@ -57,7 +57,7 @@ func generateNewSystem():
 	for planet in cosmicBodyContainer.get_children():
 		planet.queue_free()
 	
-	#Create sun
+	# create sun
 	var sun = planetScene.instantiate()
 	sun.planetType = "sun"
 	sun.SIZEINCHUNKS = 8
@@ -65,7 +65,7 @@ func generateNewSystem():
 	cosmicBodyContainer.add_child(sun)
 	rootPlanet = sun
 	
-	#  create Forest
+	# create forest
 	var forestPlanet = planetScene.instantiate()
 	forestPlanet.planetType = "forest"
 	forestPlanet.orbiting = sun
@@ -79,7 +79,7 @@ func generateNewSystem():
 	
 	cosmicBodyContainer.add_child(forestPlanet)
 	
-	#  create moon
+	# create moon
 	var forestMoon = planetScene.instantiate()
 	forestMoon.planetType = "lunar"
 	forestMoon.orbiting = forestPlanet
@@ -91,7 +91,7 @@ func generateNewSystem():
 	
 	cosmicBodyContainer.add_child(forestMoon)
 	
-	#  create arid planet
+	# create arid planet (scrapped multiple planets)
 	#var aridPlanet = planetScene.instantiate()
 	#aridPlanet.planetType = "arid"
 	#aridPlanet.orbiting = sun
@@ -114,7 +114,7 @@ func generateNewSystem():
 	
 	await get_tree().create_timer(0.1).timeout
 	
-	#Spawns player position
+	# spawns player position
 	if is_instance_valid(GlobalRef.player):
 		GlobalRef.camera.map.map(self,cosmicBodyContainer.get_children())
 	else:
@@ -136,6 +136,7 @@ func generateNewSystem():
 		player.respawn()
 		saveGameToFile()
 
+# the actual saving
 func saveGameToFile():
 	var gameData :Dictionary= {} # will hold all data
 	var planetDictionary :Array = [] # will hold the data for planets
@@ -181,9 +182,10 @@ func saveGameToFile():
 	
 	PlayerData.emit_signal("updateInventory")
 	PlayerData.emit_signal("armorUpdated")
-	
+
+# loading files
 func loadSaveFromFile():
-	
+	# check if multiplayer world first
 	if Saving.loadedFile == "multiplayer":
 		multiplayerWorldLoad()
 		return
@@ -220,7 +222,7 @@ func loadSaveFromFile():
 		GlobalRef.playerSpawnPlanet = planets[ gameData["spawnPlanet"] ] # gets planet id
 		GlobalRef.playerSpawn = str_to_var(gameData["spawnpoint"])
 	
-	#time
+	# time
 	GlobalRef.globalTick = gameData["playtime"]
 	if gameData.has("worldname"):
 		Saving.worldName = gameData["worldname"]
@@ -234,7 +236,7 @@ func loadSaveFromFile():
 	GlobalRef.savedHealth = gameData["playerHealth"]
 	if GlobalRef.savedHealth <= 0:
 		GlobalRef.savedHealth = 60
-		if Saving.worldType == 1:
+		if Saving.worldType == 1: # hardcore
 			GlobalRef.savedHealth = 0
 	
 	if gameData.has("claimedPraffinBossPrize"):
@@ -363,6 +365,7 @@ func multiplayerWorldLoad():
 var fakePlayerDictionary :Dictionary
 
 func createPlayers():
+	# track all lobby members Steam IDs
 	var playerIDs = []
 	for player in Network.lobby_members:
 		playerIDs.append(player["steam_id"])
@@ -371,6 +374,7 @@ func createPlayers():
 		if checkIfPlayerExists(player["steam_id"]):
 			continue # don't recreate existing players
 		
+		# create a new fake player node
 		var fakePlayer = fakePlayerScene.instantiate()
 		fakePlayer.steam_ID = player["steam_id"]
 		fakePlayer.planet = mainPlanet

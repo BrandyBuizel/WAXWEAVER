@@ -13,7 +13,7 @@ enum MedalUnlockState {
 var _user_id = 0;
 
 var _medal_unlocks = {};
-var _failed_highscore_posts:Array = [];
+var _failed_highscore_posts = {};
 
 var _save_slots = {};
 
@@ -37,10 +37,16 @@ func get_medal_unlock_state(medal_id: int):
 	return _medal_unlocks[str(medal_id)]
 	
 func add_failed_scoreboard_post(scoreboard_id: int, score: int):
-	_failed_highscore_posts.push_back({
-		scoreboard_id: scoreboard_id,
-		score: score,
-	})
+	var str_key = str(scoreboard_id)
+	if !_failed_highscore_posts.has(str_key):
+		_failed_highscore_posts[str_key] = {
+			"min": score,
+			"max": score,
+		};
+	else:
+		var p = _failed_highscore_posts[str_key];
+		p.max = max(p.max, score);
+		p.min = min(p.min, score);
 	save()
 
 func _get_slot_data(slot_id:int):
@@ -97,10 +103,13 @@ func retry_sending_medals_and_highscores():
 			NG.medal_unlock(int(medal_id), true)
 	
 	var scrs = _failed_highscore_posts
-	_failed_highscore_posts = [];
-	for scr in scrs:
-		NG.scoreboard_submit(scr.id, scr.value)
-	
+	_failed_highscore_posts = {};
+	for scoreboard_id_str in scrs.keys():
+		var post = scrs[scoreboard_id_str]
+		var scoreboard_id = int(scoreboard_id_str)
+		NG.scoreboard_submit(scoreboard_id, post.max)
+		if (post.min != post.max):
+			NG.scoreboard_submit(scoreboard_id, post.min)
 	save();
 	
 	sync_save_slots()
@@ -153,8 +162,10 @@ func load():
 		# Get the data from the JSON object
 		var node_data = json.get_data()
 		for i in node_data.keys():
-			set(i, node_data[i])
-
-
-
-
+			var value = node_data[i]
+			if i == "_failed_highscore_posts" and value is Array:
+				_failed_highscore_posts = {};
+				for p in value:
+					add_failed_scoreboard_post(p.id, p.value)
+				continue
+			set(i, value)

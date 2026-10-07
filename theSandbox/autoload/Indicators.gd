@@ -3,7 +3,6 @@ extends Node2D
 @onready var damageIndicator = preload("res://ui_scenes/damageIcons/damage_indicator.tscn")
 @onready var itemIndicator = preload("res://ui_scenes/damageIcons/item_indicator.tscn")
 
-
 func damnPopup(amount:int,pos:Vector2,type:String="normal"):
 	var ins = damageIndicator.instantiate()
 	ins.global_position = pos

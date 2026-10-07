@@ -2,10 +2,11 @@ TO BUILD FOR WINDOWS:
 
 scons platform=windows custom_api_file=extension_api.json 
 
+TO BUILD FOR MACOS:
 
+scons platform=macos arch=arm64 generate_bundle=yes custom_api_file=extension_api.json 
 
 add "target=template_release" to build for release
-
 
 TO BUILD FOR WEB:
 
@@ -16,8 +17,6 @@ emsdk_env.bat
 scons platform=web target=template_release
  OR
 scons platform=web ( if building to debug test )
-
-
 
 TO ADD ON TICK BEHAVIORS:
 	
