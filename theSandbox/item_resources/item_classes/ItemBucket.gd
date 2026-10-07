@@ -1,7 +1,9 @@
 extends Item
 class_name ItemBucket
 
-## 0 = Empty bucket, 1 = Water Bucket, 2 = Infinite Bucket
+## 0 = Empty Bucket
+## 1 = Water Bucket
+## 2 = Infinite Bucket
 @export var type = 0
 
 func onUse(tileX:int,tileY:int,planetDir:int,planet,lastTile:Vector2):
@@ -30,7 +32,6 @@ func emptyBucket(tileX:int,tileY:int,planetDir:int,planet,lastTile:Vector2):
 
 func fullBucket(tileX:int,tileY:int,planetDir:int,planet,lastTile:Vector2):
 	
-	
 	var waterLevel = abs( planet.DATAC.getWaterData(tileX,tileY) )
 	
 	if waterLevel < 0.8:
@@ -47,6 +48,7 @@ func magicBucket(tileX:int,tileY:int,planetDir:int,planet,lastTile:Vector2):
 		Network.send_p2p_packet(0,{"packetType":"waterAdd","amount":1.0,"posX":tileX,"posY":tileY})
 	sound(tileX,tileY,planet,true)
 
+# sounds
 func sound(tileX:int,tileY:int,planet,quiet:bool=false):
 	var pos = planet.to_global(planet.tileToPos(Vector2(tileX,tileY)))
 	var vol = 1.0

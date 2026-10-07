@@ -9,9 +9,10 @@ class_name Item
 
 @export var maxStackSize := 99
 
-## FALSE means item can be used continually while mouse is held down,TRUE means its only used once.
+## FALSE means item can be used continually while mouse is held down
+# TRUE means it's only used once
 @export var clickToUse := false
-## settings to TRUE means item can be used even when mouse is far away
+## set to TRUE means item can be used even when mouse is far away
 @export var infiniteReach := false
 
 var materialIn : Array[int] = []
