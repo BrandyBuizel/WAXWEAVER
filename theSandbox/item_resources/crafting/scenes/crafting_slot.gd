@@ -45,8 +45,6 @@ func displayCanCraft(canCraft):
 	else:
 		texture = uncraftableTexture
 		sprite.modulate = Color.BLACK
-	
-	
 
 func changeVisibility():
 	var hasStation = checkForStation()
@@ -60,9 +58,7 @@ func checkForStation():
 	if recipe.requiresStation:
 		return parent.stationScan.has( recipe.station )
 	
-	
 	return true
-
 
 func _on_craft_button_pressed():
 	

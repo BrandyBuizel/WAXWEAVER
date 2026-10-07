@@ -1,6 +1,5 @@
 extends NinePatchRect
 
-
 func setData(tex:Texture2D,nameText:String,description:String):
 	if tex != null:
 		$Icon.texture = tex

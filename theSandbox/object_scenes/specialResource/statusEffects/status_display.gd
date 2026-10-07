@@ -31,10 +31,8 @@ func _process(delta):
 func reload():
 	get_parent().get_parent().updateStatus()
 
-
 func _on_color_rect_mouse_entered():
 	$Label2.show()
-
 
 func _on_color_rect_mouse_exited():
 	$Label2.hide()

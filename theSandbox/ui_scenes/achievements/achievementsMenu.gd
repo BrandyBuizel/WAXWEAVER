@@ -30,7 +30,7 @@ func _on_text_button_pressed():
 	hide()
 	emit_signal("menuClosed")
 
-
+# newgrounds connection
 func _on_connecttong_pressed():
 	NG.sign_in()
 	$Ng.scale = Vector2(0.5,0.5)

@@ -12,7 +12,7 @@ func _ready():
 	play()
 
 func play():
-	var tweenUp = get_tree().create_tween()
+	var tweenUp = get_tree().create_tween() # animate popup positionally
 	tweenUp.tween_property(self,"position:y",300,0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 	
 	await get_tree().create_timer(6.0).timeout
