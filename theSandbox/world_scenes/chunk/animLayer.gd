@@ -1,5 +1,5 @@
 extends Sprite2D
-
+# sets the animation frame to update every 20 ticks
 var tick = 0
 func _physics_process(delta):
 	tick += 1
