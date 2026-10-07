@@ -25,7 +25,7 @@ func _process(delta):
 	
 func onRightClick():
 	
-	#cancel if out of range
+	# cancel if out of range
 	if parent.get_local_mouse_position().length() > 48:
 		return
 	
@@ -119,7 +119,6 @@ func onRightClick():
 			editBody.editTiles( dick )
 			SoundManager.playSound("interacts/door",get_global_mouse_position(),1.2,0.1)
 		55: # bed
-			
 			if editBody is Ship:
 				GlobalRef.sendChat("You can't sleep on a ship!")
 				return # fix laying on bed in ship
@@ -275,7 +274,7 @@ func onRightClick():
 			GlobalRef.hotbar.showShop()
 			editBody.editTiles( {Vector2i(tile.x, tile.y):140} )
 		
-		147: # minboss
+		147: # miniboss
 			if PlayerData.checkForIngredient(76,5):
 				if CreatureData.spawnBoss(parent.planetOn,parent.position + Vector2(0,-64).rotated(parent.rotated*(PI/2)) ,"miniboss"):
 					GlobalRef.sendChat("Summoned magician!!")

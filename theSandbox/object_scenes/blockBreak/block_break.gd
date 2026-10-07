@@ -73,8 +73,7 @@ func _ready():
 
 func _process(delta):
 	
-	#this shit sucks fix it
-	
+	# this shit sucks fix it
 	if planet == null:
 		print_debug("BLOCK BREAK HAS NO PLANET ASSIGNED")
 		return
@@ -119,6 +118,7 @@ func _process(delta):
 	if abs(mousePos.x) > 4:
 		queue_free()
 
+# sounds
 func playDigSound(delta):
 	soundTick += delta
 	

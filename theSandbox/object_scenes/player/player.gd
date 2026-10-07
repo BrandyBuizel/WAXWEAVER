@@ -26,11 +26,19 @@ var previousChunk = Vector2.ZERO
 var planetOn :Node2D = null
 var shipOn :Node2D = null
 var lastPlanetOn :Node2D = null
-##States: 0 = ON PLANET, 1 = ON SHIP IN SPACE, 
-##      2 = ON SHIP ON PLANET, 3 = IN SPACE
+
+# States
+## 0 = ON PLANET
+## 1 = ON SHIP IN SPACE
+## 2 = ON SHIP ON PLANET
+## 3 = IN SPACE
 var state = 0 
 
-## States: 0 = REGULAR, 1 = SITTING, 2 = LADDER, 3 = BED
+# States
+## 0 = REGULAR
+## 1 = SITTING
+## 2 = LADDER
+##.3 = BED
 var movementState = 0
 
 var animTick = 0
@@ -181,12 +189,12 @@ func _process(delta):
 	if GlobalRef.chatIsOpen:
 		return
 	
-	#map toggle
+	# map toggle
 	#if Input.is_action_just_pressed("map"):
 	#	GlobalRef.camera.mapbg.visible = !GlobalRef.camera.mapbg.visible
 	#	GlobalRef.camera.map.visible = GlobalRef.camera.mapbg.visible
 	
-	# suffocates player if they are in a block
+	# suffocates player if they are inside a block
 	if $suffocatingCast/suffocate.is_colliding() and !noClip:
 		healthComponent.inflictStatus("suffocating",0.1)
 	
@@ -328,7 +336,6 @@ func normalMovement(delta):
 		106:
 			speedAdd = -GlobalRef.conveyorspeed
 	
-	
 	var newVel = velocity.rotated(-rotSource)
 	if beingKnockedback:
 		newVel.x = lerp(newVel.x, (dir * speed) + speedAdd, 1.0-pow(2.0,(-delta/0.4562))) # make framerate independent
@@ -375,7 +382,6 @@ func normalMovement(delta):
 	
 	velocity = newVel.rotated(rotSource)
 	
-	
 	move_and_slide()
 	
 	playerAnimation(dir,newVel,delta)
@@ -385,7 +391,6 @@ func normalMovement(delta):
 	
 	if onFloor and beingKnockedback and newVel.y > 0:
 		beingKnockedback = false
-	
 	
 	
 	if !onFloor:
@@ -418,7 +423,7 @@ func WATERJUMPCAMERALETSGO(body,vel,rot,onFloor,delta):
 	if tile == null:
 		return vel
 	
-	#load audio stream for footstep
+	# load audio stream for footsteps
 	if tile != myTile: # if tile changes
 		var floorr = tile + Vector2(0,1).rotated((PI/2)*rotated) # gets floor tile
 		var blockID :int = body.DATAC.getTileData(floorr.x,floorr.y)
@@ -428,7 +433,7 @@ func WATERJUMPCAMERALETSGO(body,vel,rot,onFloor,delta):
 	
 	myTile = tile
 	
-	# attach to ladder if holding up
+	# attach to ladder if holding up directional
 	if lastOnLadder > 0:
 		lastOnLadder -= 60 * delta # subtract ladder ticks
 	if body.DATAC.getTileData(tile.x,tile.y) == 25:
@@ -534,7 +539,6 @@ func chairMovement(delta):
 	
 	velocity = Vector2.ZERO
 	
-	
 	if shipOn != null:
 		sprite.rotation = shipOn.rotation
 		lerpCameraRotation(shipOn.rotation,delta)
@@ -567,7 +571,7 @@ func ladderMovement(delta):
 	
 	airTime = 0.0
 	
-	## animtation
+	## animation
 	if vdir != 0:
 		ladderTick += delta * 60.0
 		if roundi(ladderTick) % 7 == 0 and !ladderAnimPlayed:
@@ -600,7 +604,6 @@ func ladderMovement(delta):
 		movementState = 0
 		newVel.y = -250 
 		sendMovementPacket(0,250,0)
-		
 	
 	
 	var tile = obj.posToTile(obj.to_local(global_position))
@@ -678,7 +681,7 @@ func inSpaceMovement(delta):
 	move_and_slide()
 	ensureCamPosition()
 
-#region planet attaching/detaching stuff. scary
+# region planet attaching/detaching stuff. scary
 func detachFromShip():
 	if state == 1 or state == 2:
 		#Code for dismounting ship
@@ -953,7 +956,6 @@ func closeDoor(tile,body):
 	
 	var d = BlockData.placeDoor(tile.x,tile.y,body,info % 4,(info/8)*2,doorSwing)
 	body.editTiles(d)
-	
 
 func chairSit(tile,editBody):
 	animationPlayer.play("sit")
@@ -1307,7 +1309,7 @@ func wallCheck(pos):
 
 ######################################################################
 ############################# LIGHTS #################################
-##################### DO NOT TOUCH !!!!!!!!!!!!#######################
+##################### DO NOT TOUCH !!!(oTorch)!!!#####################
 ######################################################################
 
 func updateLight():
@@ -1362,8 +1364,7 @@ func dieAndRespawn():
 	
 	await get_tree().create_timer(Stats.respawnWait).timeout
 	
-	
-	# respawn
+	# respawn player
 	respawn()
 	
 	# reset variables
@@ -1421,6 +1422,7 @@ func toggleNoClip():
 	noClip = !noClip
 	$CollisionShape2D.disabled = noClip
 
+# footsteps
 func playFootstepSound():
 	SoundManager.playSound("enemy/step",global_position,0.5,0.1)
 	if stream != null:
@@ -1458,6 +1460,7 @@ func lerpCameraRotation(rot,delta):
 		interpolation = o
 	GlobalRef.camera.rotation = lerp_angle(GlobalRef.camera.rotation,rot,interpolation)
 
+# multiplayer code
 func sendMovementPacket(movingDir:int,jump:int=0,type:int=0):
 	if !Network.isMultiplayerGame:
 		return

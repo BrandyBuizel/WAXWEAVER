@@ -6,16 +6,17 @@ var rot = 0
 var pos = null
 var body = null
 
+# if true this chest instance is in use
 var multiplayerInstance :bool = false
 
 func _ready():
+	# opening animation
 	sprite.rotation = rot * (PI/2)
 	set_process(false)
 	await get_tree().create_timer(0.1).timeout
 	sprite.frame = 1
 	await get_tree().create_timer(0.1).timeout
 	sprite.frame = 2
-	
 	set_process(true)
 
 func _process(delta):
@@ -31,6 +32,7 @@ func _process(delta):
 			return
 
 func end():
+	# closing chest animation
 	await get_tree().create_timer(0.1).timeout
 	sprite.frame = 1
 	await get_tree().create_timer(0.1).timeout
