@@ -21,18 +21,15 @@ IF ERRORLEVEL 2 GOTO Linux
 IF ERRORLEVEL 1 GOTO Windows
 
 :Windows
-scons platform=windows
-scons platform=windows custom_api_file=gdextension/extension_api.json
+scons platform=windows custom_api_file=godot-cpp/gdextension/extension_api.json
 GOTO End
 
 :Linux
-scons platform=Linux
-scons platform=Linux custom_api_file=gdextension/extension_api.json
+scons platform=linux custom_api_file=godot-cpp/gdextension/extension_api.json
 GOTO End
 
 :MacOS
-scons platform=macos
-scons platform=macos arch=arm64 generate_bundle=yes custom_api_file=gdextension/extension_api.json
+scons platform=macos arch=arm64 generate_bundle=yes custom_api_file=godot-cpp/gdextension/extension_api.json
 
 GOTO End
 

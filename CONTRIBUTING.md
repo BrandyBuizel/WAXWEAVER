@@ -33,7 +33,17 @@ Note that ```scons``` requires Python!
 * macOS: `scons platform=macos`
 
 ### GET EXTENSION API:
-`scons platform=windows custom_api_file=gdextension/extension_api.json`
+`godot-cpp/gdextension/extension_api.json` is the magic file!
+
+For Windows:
+```bash
+scons platform=windows custom_api_file=godot-cpp/gdextension/extension_api.json
+```
+
+For macOS:
+```bash
+scons platform=macos arch=arm64 generate_bundle=yes custom_api_file=godot-cpp/gdextension/extension_api.json
+```
 
 ## Ways to Contribute
 We love new contributors!

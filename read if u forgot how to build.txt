@@ -1,10 +1,10 @@
 TO BUILD FOR WINDOWS:
 
-scons platform=windows custom_api_file=extension_api.json 
+scons platform=windows custom_api_file=godot-cpp/gdextension/extension_api.json
 
 TO BUILD FOR MACOS:
 
-scons platform=macos arch=arm64 generate_bundle=yes custom_api_file=extension_api.json 
+scons platform=macos arch=arm64 generate_bundle=yes custom_api_file=godot-cpp/gdextension/extension_api.json
 
 add "target=template_release" to build for release
 

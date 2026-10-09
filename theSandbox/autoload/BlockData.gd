@@ -579,10 +579,10 @@ func getBlockTexture(blockID) -> Texture2D:
 
 func takeBigSreenShot(planet:Planet):
 	
-	var range :int= 96 # in chunks
+	var chunk_range :int= 96 # in chunks
 	var lightSimAmount :int = 64
-	var bigimageTile = Image.create(range * 64,range * 64,false,Image.FORMAT_RGBA8)
-	var bigimage = Image.create(range * 64,range * 64,false,Image.FORMAT_RGBA8)
+	var bigimageTile = Image.create(chunk_range * 64,chunk_range * 64,false,Image.FORMAT_RGBA8)
+	var bigimage = Image.create(chunk_range * 64,chunk_range * 64,false,Image.FORMAT_RGBA8)
 	
 	
 	var shape = RectangleShape2D.new() # this is so thing doesn't argue
@@ -592,8 +592,8 @@ func takeBigSreenShot(planet:Planet):
 	GlobalRef.sendChat("Rendering planet...")
 	await get_tree().process_frame
 	
-	for x in range(range):
-		for y in range(range):
+	for x in range(chunk_range):
+		for y in range(chunk_range):
 			var pos = Vector2( x,y )
 			var images :Array= theChunker.generateTexturesFromData(planet.DATAC,pos,body,shape,false)
 			var waterImage :Array= theChunker.drawLiquid(planet.DATAC,pos,false)
@@ -604,9 +604,9 @@ func takeBigSreenShot(planet:Planet):
 			for xx in range(64):
 				for yy in range(64):
 					
-					if xx + x == 62 + range:
+					if xx + x == 62 + chunk_range:
 						continue
-					if yy + y == 62 + range:
+					if yy + y == 62 + chunk_range:
 						continue
 					
 					if images[0].get_pixel(xx,yy).a > 0.5:
@@ -618,34 +618,34 @@ func takeBigSreenShot(planet:Planet):
 			bigimageTile.blend_rect( images[2],Rect2(0,0,64,64),Vector2i(x*64,y*64) )
 			bigimageTile.blend_rect( waterImage[0],Rect2(0,0,64,64),Vector2i(x*64,y*64) )
 	
-	bigimage.blend_rect(bigimageTile,Rect2i(0,0,range*64,range*64),Vector2i.ZERO  )
+	bigimage.blend_rect(bigimageTile,Rect2i(0,0,chunk_range*64,chunk_range*64),Vector2i.ZERO  )
 	
 	GlobalRef.sendChat("Simulating light...")
 	await get_tree().process_frame
 	
 	for l in range(lightSimAmount):
-		for x in range(range):
-			for y in range(range):
+		for x in range(chunk_range):
+			for y in range(chunk_range):
 				var pos = Vector2( x,y )
 				theChunker.simulateLightOnly( planet.DATAC,pos,GlobalRef.daylightMult )
 	
 	GlobalRef.sendChat("Generating light image...")
 	await get_tree().process_frame
 	
-	var lightimage :Image= Image.create(range * 8,range * 8,false,Image.FORMAT_RGBA8)
+	var lightimage :Image= Image.create(chunk_range * 8,chunk_range * 8,false,Image.FORMAT_RGBA8)
 	
-	for x in range(range*8):
-		for y in range(range*8):
+	for x in range(chunk_range*8):
+		for y in range(chunk_range*8):
 			var c = abs(planet.DATAC.getLightData(x,y))
 			lightimage.set_pixel(x,y, Color(c,c,c,1.0) )
-	lightimage.resize(range*64,range*64,1)
+	lightimage.resize(chunk_range*64,chunk_range*64,1)
 	
 	GlobalRef.sendChat("Shading planet... This could take a while...")
 	await get_tree().process_frame
 	await get_tree().process_frame
 	
-	for x in range(range * 64):
-		for y in range(range * 64):
+	for x in range(chunk_range * 64):
+		for y in range(chunk_range * 64):
 			var baseColor :Color= bigimage.get_pixel(x,y)
 			var lightColor :Color= lightimage.get_pixel(x,y)
 			
