@@ -13,8 +13,8 @@ var boss = null
 signal spawnedBoss
 
 var creatures = {
-	"praffin": "res://object_scenes/entity/enemy_scenes/praffin/praffin.tscn",
-	"butterfly": "res://object_scenes/entity/enemy_scenes/butterfly/butterfly.tscn",
+	"praffin":"res://object_scenes/entity/enemy_scenes/praffin/praffin.tscn",
+	"butterfly":"res://object_scenes/entity/enemy_scenes/butterfly/butterfly.tscn",
 	"fish":"res://object_scenes/entity/enemy_scenes/fish/fish.tscn",
 	"firefly":"res://object_scenes/entity/enemy_scenes/firefly/firefly.tscn",
 	"evilBird":"res://object_scenes/entity/enemy_scenes/evilBird/evil_bird.tscn",
@@ -61,7 +61,7 @@ func _physics_process(delta):
 			return
 		spawnDelayTick = 0
 		
-
+# where is the creature
 func determineContext(tile,planet):
 	if abs(planet.DATAC.getWaterData(tile.x,tile.y)) > 0.5:
 		return 3 # is water
@@ -136,7 +136,6 @@ func spawnEnemy(planet,tile,context):
 	#creatureAmount += ins.creatureSlots # add creatures slots
 	planet.entityContainer.add_child(ins)
 
-
 func creatureDeleted(creature):
 	if creature.passive:
 		passiveAmount -= int(creature.creatureSlots)
@@ -161,7 +160,6 @@ func isTileOnScreen(tile,planet):
 	if xRange <= abs(rangeMin.x) and yRange <= abs(rangeMin.y):
 		return true
 
-
 	return false
 	
 func pickRandomSpot(planet):
@@ -170,7 +168,6 @@ func pickRandomSpot(planet):
 	
 	if playerTile == null:
 		return Vector2.ZERO
-	
 	
 	var spawnRange = Vector2(36,22).rotated( (PI/2) * GlobalRef.player.rotated )
 	spawnRange.x = abs(spawnRange.x)
@@ -199,6 +196,7 @@ func summonCommand(planet,position,string):
 	
 	GlobalRef.sendChat("Spawned a " + string)
 
+# boss stuff
 func spawnBoss(planet,position,string):
 	
 	if is_instance_valid(boss):

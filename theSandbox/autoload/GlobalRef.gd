@@ -90,7 +90,7 @@ func clearEverything():
 
 func _process(delta):
 	
-	var isNight :bool= isNight()
+	var wasNight :bool= isNight()
 	
 	currentTime = (globalTick % dayLength) / float(dayLength)
 	
@@ -98,7 +98,7 @@ func _process(delta):
 	daylightMult = clamp( wave,0.0,1.0 )
 	
 	## double-check night is over
-	if isNight() != isNight and !isNight():
+	if isNight() != wasNight and !isNight():
 		emit_signal("newDay")
 		print("new day")
 	

@@ -58,7 +58,8 @@ func clearSave(key):
 		file.close()
 		var dir = DirAccess.open("user://")
 		dir.remove(key + ".sdata")
-	
+
+# external link
 func open_site(url):
 	OS.shell_open(url)
 
@@ -76,7 +77,7 @@ func has_save(key):
 		return true
 
 func autosave():
-	GlobalRef.system.saveGameToFile()
+	GlobalRef.system.saveGameToFile() #autosave
 
 func downloadsave(key):
 	if OS.has_feature('web'):
@@ -90,7 +91,7 @@ func checkforgamesave():
 	return false
 			
 
-# define modes of play
+# define modes of play, self-explanatory
 func getWorldTypeName() -> String:
 	match worldType:
 		0:
