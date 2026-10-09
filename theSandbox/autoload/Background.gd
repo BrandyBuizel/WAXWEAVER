@@ -8,7 +8,6 @@ var bgDictionary = {
 	"sun":"res://ui_scenes/backgrounds/sun/sun_bg.tscn",
 }
 
-
 func scroll(amount:Vector2):
 	backgroundScrolled.emit(amount)
 

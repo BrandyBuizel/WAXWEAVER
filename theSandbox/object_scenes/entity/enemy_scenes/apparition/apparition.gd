@@ -26,7 +26,7 @@ func _physics_process(delta):
 			vanished(delta)
 		2:
 			chase(delta)
-			
+
 
 func idle(delta):
 	rotationOrigin.rotation = getQuad(self) * (PI/2)

@@ -103,7 +103,6 @@ func getDirectionTowardsPlayer() -> int:
 	if is_instance_valid(healthComp):
 		if healthComp.checkIfHasEffect("confused"):
 			targetdir *= -1
-		
 	
 	return targetdir
 

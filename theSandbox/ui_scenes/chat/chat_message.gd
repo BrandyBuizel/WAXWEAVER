@@ -3,7 +3,6 @@ extends Node2D
 var text = "empty message"
 var color :Color = Color.WHITE
 
-
 @onready var label = $Label
 
 var ticks :float= 0.0

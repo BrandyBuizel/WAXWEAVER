@@ -9,7 +9,6 @@ extends Node2D
 var width = 400
 var height = 400
 
-
 var mat = preload("res://ui_scenes/backgroundLayers/background_layer_material.tres").duplicate()
 
 func _ready():
@@ -40,7 +39,6 @@ func updatePosition(moveDir):
 	if position.y > 0:
 		position.y -= height
 	
-
 # theres gotta be a better way to do this !!
 func updateModulate(newColor):
 	mat.set_shader_parameter("modulate",newColor)

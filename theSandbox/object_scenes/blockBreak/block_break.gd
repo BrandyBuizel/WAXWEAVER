@@ -22,7 +22,7 @@ var cantMineSparkTick :float= 0.51
 var stream :AudioStreamOggVorbis= null
 
 func _ready():
-	
+	# the break effect is a spawned texture
 	if !is_instance_valid(planet):
 		return
 	
@@ -72,7 +72,7 @@ func _ready():
 	
 
 func _process(delta):
-	
+
 	# this shit sucks fix it
 	if planet == null:
 		print_debug("BLOCK BREAK HAS NO PLANET ASSIGNED")

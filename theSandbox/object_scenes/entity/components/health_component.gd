@@ -76,8 +76,10 @@ func damage(amount,area:Hurtbox=null,hitCrit:bool=false,source:String="idk",type
 		return
 	
 	SoundManager.playSound("enemy/attackEnemy",parent.global_position,attackVolume,0.2)
+	
 	var trueAmount = amount
 	var def = defense
+
 	if checkIfHasEffect("fragile"):
 		def /= 2
 	if checkIfHasEffect("tough"):

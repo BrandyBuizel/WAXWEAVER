@@ -12,7 +12,6 @@ var collectedIDs = []
 
 var invincible = false
 
-
 func _ready():
 	if healthComponent == null:
 		#print("Error, entity has no health component")
@@ -33,7 +32,7 @@ func _on_area_entered(area):
 	if invincible:
 		return
 		
-	#is now valid hurtbox
+	# is now valid hurtbox
 	
 	# get dir for knockback
 	var dir = global_position - area.global_position

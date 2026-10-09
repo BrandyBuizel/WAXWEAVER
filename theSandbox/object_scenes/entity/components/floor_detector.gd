@@ -6,6 +6,7 @@ var tile :int = 0
 var info :int = 0
 
 var tick :int= 0
+
 @onready var parent = get_parent()
 
 func _ready():
@@ -18,7 +19,6 @@ func _ready():
 	planet = get_parent().get_parent().get_parent()
 	
 	set_process( planet is Planet )
-
 
 func _process(delta):
 	tick += 1

@@ -1,6 +1,5 @@
 extends Node2D
 
-var state :int=0 
 # 0: main 
 # 1: save files 
 # 2: naming new save
@@ -12,10 +11,11 @@ var state :int=0
 # 8: medals
 # 9: rename world
 # 10: lobby list
+var state :int = 0
 
 @onready var selectedslot = $savefiles/ScrollContainer/VBoxContainer/saveslot
 
-var waitUntilMusic :int= 0
+var waitUntilMusic :int = 0
 
 var holdToClearSave :int = 0
 
@@ -246,7 +246,6 @@ func fullscreentoggle():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	
 
 
 func _on_renamecancel_pressed():
@@ -282,12 +281,9 @@ func _on_world_type_pressed():
 	Saving.worldType = worldTypeSet
 
 
-
-
 func _on_back_pressed():
 	$joinLobbyScreen.hide()
 	enterState(0)
-
 
 func _on_lobbies_pressed():
 	enterState(10)
