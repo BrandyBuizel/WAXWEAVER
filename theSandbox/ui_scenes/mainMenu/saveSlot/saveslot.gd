@@ -8,7 +8,6 @@ extends Container
 
 @onready var menu = get_parent().get_parent().get_parent().get_parent()
 
-
 func _ready():
 	setData()
 
@@ -58,7 +57,6 @@ func changeArmor(gameData:Dictionary):
 	var vanityChest = ItemData.getItem(inv[51][0])
 	var vanityLegs = ItemData.getItem(inv[52][0])
 	
-	
 	# check for main armor
 	if helmet is ItemArmorHelmet:
 		helmetSpr.texture =  helmet.armorTexture
@@ -82,13 +80,10 @@ func changeArmor(gameData:Dictionary):
 
 	if vanityLegs is ItemArmorLegs:
 		legsSpr.texture =  vanityLegs.armorTexture
-	
-
 
 func _on_text_button_pressed():
 	Saving.loadedFile = saveFile
 	get_tree().change_scene_to_file("res://world_scenes/system/system.tscn")
-
 
 func _on_create_pressed():
 	menu.createNewSave(self)
@@ -102,21 +97,17 @@ func createNewWorld():
 	GlobalRef.clearEverything()
 	PlayerData.initializeInventory()
 	
-	
 	get_tree().change_scene_to_file("res://world_scenes/system/system.tscn")
-
 
 func _on_delete_pressed():
 	menu.areyousuredelete(self)
 
 func deleteSave():
-	Saving.clearSave(saveFile)
-	
+	Saving.clearSave(saveFile)	
 	
 	$emptyslot.show()
 	$info.hide()
 	$createNew.show()
-
 
 func _on_download_pressed():
 	Saving.downloadsave(saveFile)
