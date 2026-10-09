@@ -19,6 +19,13 @@ var itemFrames :Dictionary = {}
 var armorStands :Dictionary = {}
 
 func _ready():
+	# make sure c++ extension is loaded and classes are registered
+	GDExtensionManager.load_extension("res://bin/gdexample.gdextension")
+
+	if not ClassDB.class_exists("CHUNKDRAW"):
+		push_error("CHUNKDRAW is not registered. Check GDExtension: res://bin/gdexample.gdextension")
+		return
+	
 	var ins = ClassDB.instantiate("CHUNKDRAW")
 	if ins == null:
 		push_error("Failed to instantiate CHUNKDRAW")
@@ -26,6 +33,10 @@ func _ready():
 	theChunker = ins
 	add_child(ins)
 	
+	if not ClassDB.class_exists("PLANETGEN"):
+		push_error("PLANETGEN is not registered. Check GDExtension: res://bin/gdexample.gdextension")
+		return
+
 	var g = ClassDB.instantiate("PLANETGEN")
 	if g == null:
 		push_error("Failed to instantiate PLANETGEN")
@@ -661,6 +672,7 @@ func takeBigSreenShot(planet:Planet):
 			bigimage.set_pixel(x,y, baseColor * lightColor)
 	
 	# export screenshot code
+	# mayb require custom path for macOS and linux
 	var filename = str( int(Time.get_unix_time_from_system()) )
 	DirAccess.make_dir_recursive_absolute("user://screenshots/")
 	bigimage.save_png("user://screenshots/" + filename + ".png")

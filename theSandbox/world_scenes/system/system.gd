@@ -23,6 +23,12 @@ var mainPlanet :Planet
 var tickSync :float = 0.0
 
 func _ready():
+	var loadedPlanetScene = load("res://world_scenes/planet/planet.tscn")
+	if not loadedPlanetScene is PackedScene:
+		push_error("Failed to load planet scene: res://world_scenes/planet/planet.tscn")
+		return
+	
+	planetScene = loadedPlanetScene
 	planetsShouldGenerate = !Saving.has_save(Saving.loadedFile)
 	
 	if Saving.loadedFile == "multiplayer":
@@ -123,6 +129,7 @@ func generateNewSystem():
 		player.system = self
 		objectContainer.add_child(player)
 		
+		# 'pee' means safe spawn area, so player doesn't spawn in a wall
 		var pee = forestPlanet.DATAC.findSpawnPosition(BlockData.theChunker.returnLookup())
 		player.position = Vector2(pee) + forestPlanet.position
 		player.attachToPlanet(forestPlanet)
@@ -331,7 +338,6 @@ func fullscreentoggle():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	
 
 func multiplayerWorldLoad():
 	var worldData :Dictionary= Network.recievedWorldPackets
