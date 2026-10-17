@@ -23,7 +23,6 @@ func getLobbyList():
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE) # makes lobby search worldwide
 	Steam.requestLobbyList()
 
-
 func interpretLobbies(lobbies) -> void:
 	searchingForLobbyList = false
 	

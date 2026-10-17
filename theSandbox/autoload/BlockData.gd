@@ -638,7 +638,7 @@ func takeBigSreenShot(planet:Planet):
 		for y in range(chunk_range*8):
 			var c = abs(planet.DATAC.getLightData(x,y))
 			lightimage.set_pixel(x,y, Color(c,c,c,1.0) )
-	lightimage.resize(chunk_range*64,chunk_range*64,1)
+	lightimage.resize(chunk_range*64,chunk_range*64,Image.INTERPOLATE_NEAREST)
 	
 	GlobalRef.sendChat("Shading planet... This could take a while...")
 	await get_tree().process_frame

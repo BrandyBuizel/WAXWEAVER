@@ -127,7 +127,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 	if healthComponent.health == 0 and Saving.worldType == 1:
-		dieAndRespawn() # for hardcore
+		dieAndRespawn() # for hardcore mode
 	
 	Network.connect("updatePlayerList",newPlayerJoined)
 

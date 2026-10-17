@@ -25,8 +25,13 @@ var renameWorldContainer:String = "save1"
 
 var worldTypeSet :int = 0
 
+@onready var mouseIcon = get_node_or_null("MouseIcon")
+
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	var useNativeCursor = OS.has_feature("macos") or mouseIcon == null
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE if useNativeCursor else Input.MOUSE_MODE_HIDDEN)
+	if mouseIcon != null:
+		mouseIcon.visible = !useNativeCursor
 	$mainButtons/versionLabel.text = "v1." + str( GlobalRef.version )
 	SoundManager.deleteMusicNode()
 	SoundManager.randomMusicTick = 170
@@ -49,7 +54,8 @@ func _ready():
 
 func _process(delta):
 	$bg/backgroundLayer.scroll(Vector2(0.1 * delta * 60.0,0))
-	$MouseIcon.position = get_local_mouse_position()
+	if mouseIcon != null and mouseIcon.visible:
+		mouseIcon.position = get_local_mouse_position()
 	if waitUntilMusic == 1200:
 		$Music.play()
 	waitUntilMusic += 1
