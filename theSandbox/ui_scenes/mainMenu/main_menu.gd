@@ -28,7 +28,7 @@ var worldTypeSet :int = 0
 @onready var mouseIcon = get_node_or_null("MouseIcon")
 
 func _ready():
-	var useNativeCursor = OS.has_feature("macos") or mouseIcon == null
+	var useNativeCursor = mouseIcon == null
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE if useNativeCursor else Input.MOUSE_MODE_HIDDEN)
 	if mouseIcon != null:
 		mouseIcon.visible = !useNativeCursor
