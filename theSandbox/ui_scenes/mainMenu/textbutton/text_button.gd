@@ -12,7 +12,9 @@ extends Button
 var focused :bool= false
 
 func _ready():
-	
+	if OS.has_feature("macos"):
+		action_mode = BaseButton.ACTION_MODE_BUTTON_PRESS
+
 	$shadow.text = buttonText
 	$Node2D/text.text = buttonText
 	
