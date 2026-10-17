@@ -4,7 +4,7 @@ var steam_id: int = 0
 var steam_username: String = ""
 
 func _ready():
-	#3599070 - waxweaver
+	# SteamID: 3599070 (waxweaver)
 	if !OS.has_feature("web"):
 		var initialize_response: Dictionary = Steam.steamInitEx(true,3599070)
 		print( initialize_response )
