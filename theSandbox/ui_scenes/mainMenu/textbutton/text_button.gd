@@ -15,10 +15,14 @@ func _ready():
 	if OS.has_feature("macos"):
 		action_mode = BaseButton.ACTION_MODE_BUTTON_PRESS
 
+	$shadow.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$Node2D/text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$shadow.text = buttonText
 	$Node2D/text.text = buttonText
 	
 	size = $shadow.size
+	focus_entered.connect(_on_focus_entered)
+	focus_exited.connect(_on_focus_exited)
 
 func _physics_process(delta):
 	
@@ -35,14 +39,20 @@ func _physics_process(delta):
 
 func _on_mouse_entered():
 	focused = true
+	grab_focus()
 	$buttonUp.play()
 	
 
 func _on_mouse_exited():
-	focused = false
+	focused = has_focus()
 	if $buttonSelect.playing:
 		$buttonDown.play()
 
+func _on_focus_entered():
+	focused = true
+
+func _on_focus_exited():
+	focused = false
 
 func _on_button_down():
 	$Node2D.position = Vector2(-2,2)

@@ -51,6 +51,7 @@ func _ready():
 		
 		if !Saving.checkforgamesave(): # loads disclaimer if on web and there are no saves
 			enterState(5)
+	call_deferred("_focus_first_visible_button")
 
 func _process(delta):
 	$bg/backgroundLayer.scroll(Vector2(0.1 * delta * 60.0,0))
@@ -128,6 +129,23 @@ func enterState(newstate):
 	$bg/AnimatedSprite2D2.visible = newstate == 0
 
 	state = newstate
+	call_deferred("_focus_first_visible_button")
+
+func _focus_first_visible_button():
+	var visible_buttons :Array[Control] = []
+	for control in find_children("*", "BaseButton", true, false):
+		if control.is_visible_in_tree() and control.focus_mode != Control.FOCUS_NONE:
+			visible_buttons.append(control)
+
+	for i in range(visible_buttons.size()):
+		var control = visible_buttons[i]
+		if i > 0:
+			control.set_focus_neighbor(Side.SIDE_TOP, control.get_path_to(visible_buttons[i - 1]))
+		if i < visible_buttons.size() - 1:
+			control.set_focus_neighbor(Side.SIDE_BOTTOM, control.get_path_to(visible_buttons[i + 1]))
+
+	if !visible_buttons.is_empty():
+		visible_buttons[0].grab_focus()
 
 func _on_quit_pressed():
 	if !OS.has_feature("web"):
