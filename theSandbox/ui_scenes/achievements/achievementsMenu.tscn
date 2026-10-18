@@ -122,7 +122,7 @@ offset_top = -4.0
 offset_right = 81.0
 offset_bottom = 12.0
 
-[connection signal="pressed" from="textButton" to="." method="_on_text_button_pressed"]
+[connection signal="button_down" from="textButton" to="." method="_on_text_button_pressed"]
 [connection signal="mouse_entered" from="Ng/connecttong" to="." method="_on_connecttong_mouse_entered"]
 [connection signal="mouse_exited" from="Ng/connecttong" to="." method="_on_connecttong_mouse_exited"]
-[connection signal="pressed" from="Ng/connecttong" to="." method="_on_connecttong_pressed"]
+[connection signal="button_down" from="Ng/connecttong" to="." method="_on_connecttong_pressed"]
