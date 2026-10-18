@@ -76,6 +76,7 @@ func getQuad(obj):
 	
 	var pos = getPos()
 	if pos == null:
+		# before placing enemy check rotation using world position.
 		var angle1 = Vector2(1,1)
 		var angle2 = Vector2(-1,1)
 			
@@ -90,6 +91,7 @@ func getWorldRot(obj):
 	return getQuad(obj) * (PI/2)
 
 func getDirectionTowardsPlayer() -> int:
+	# compare positions to correct rotation of the planet
 	var myQuad = getQuad( self )
 	var playerQuad = getQuad( GlobalRef.player )
 		

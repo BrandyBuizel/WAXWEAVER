@@ -63,6 +63,7 @@ func _physics_process(delta):
 		
 # where is the creature
 func determineContext(tile,planet):
+	# spawn context combines water, biome, depth, and time of day
 	if abs(planet.DATAC.getWaterData(tile.x,tile.y)) > 0.5:
 		return 3 # is water
 	
