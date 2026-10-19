@@ -67,6 +67,7 @@ window/size/viewport_height=300
 window/size/window_width_override=800
 window/size/window_height_override=600
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="res://ui_scenes/mouseCursor/mouseIcon.png"
 
 [editor_plugins]
 
