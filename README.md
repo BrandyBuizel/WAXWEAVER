@@ -8,6 +8,6 @@
 >I NEVER GAVE THIS A LISCENSE SO UHH
 >basically do whatever the hell u want with the code just no commercial use. I never made money off of waxweaver so neither can you !
 ---
-_original [README.md](README.md) has been left untouched, but we do now have a [AGPL-3.0 license](LICENSE) from December 28th 2025 onward._
+_[README.md](README.md) otherwise left untouched, but we now have a [AGPL-3.0 license](LICENSE) from December 28th 2025 onward._
 
-**bless [@kaiakairos](https://github.com/kaiakairos) for open-sourcing their code; [play waxweaver on steam](https://store.steampowered.com/app/3599070/waxweaver/) and [donate to kaia on itch.io](https://kaiakairos.itch.io/waxweaver) if you'd like :)**
+**bless [@kaiakairos](https://github.com/kaiakairos) for open-sourcing their code; [play waxweaver on steam](https://store.steampowered.com/app/3599070/waxweaver/) and you can [donate to kaia on itch.io](https://kaiakairos.itch.io/waxweaver).**
