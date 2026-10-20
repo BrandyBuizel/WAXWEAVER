@@ -10,4 +10,4 @@
 ---
 _[README.md](README.md) otherwise left untouched, but we now have a [AGPL-3.0 license](LICENSE) from December 28th 2025 onward._
 
-**bless [@kaiakairos](https://github.com/kaiakairos) for open-sourcing their code; [play waxweaver on steam](https://store.steampowered.com/app/3599070/waxweaver/) and you can [donate to kaia on itch.io](https://kaiakairos.itch.io/waxweaver).**
+**bless [@kaiakairos](https://github.com/kaiakairos) for open-sourcing their code; you can [play free on steam](https://store.steampowered.com/app/3599070/waxweaver/) / [donate to kaia on itch.io](https://kaiakairos.itch.io/waxweaver)**
