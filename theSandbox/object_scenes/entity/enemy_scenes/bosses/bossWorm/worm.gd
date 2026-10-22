@@ -89,7 +89,7 @@ func orbit(delta):
 	
 	var dotty :float= (dot + 1.0) + 0.01
 	
-	velocity += to_local(GlobalRef.player.global_position) * turnSpeed * dotty
+	velocity += to_local(KineticGear.seenPos(GlobalRef.player.global_position)) * turnSpeed * dotty
 	if velocity.length() > speeednis:
 		velocity = velocity.normalized() * speeednis
 	
@@ -118,7 +118,7 @@ func playerDead(delta):
 	setVelocity(vel)
 	move_and_slide()
 	
-	if to_local(GlobalRef.player.global_position).length() > 1200:
+	if to_local(KineticGear.seenPos(GlobalRef.player.global_position)).length() > 1200:
 		queue_free()
 
 func moveBody(oldPos:Vector2,newPos:Vector2):
@@ -139,7 +139,7 @@ func moveBody(oldPos:Vector2,newPos:Vector2):
 		bodyLine.add_point(segment.position)
 
 func enterDashState():
-	dashAngle = to_local(GlobalRef.player.global_position)
+	dashAngle = to_local(KineticGear.seenPos(GlobalRef.player.global_position))
 	dashTicks = 60
 	state = 1
 
@@ -151,7 +151,7 @@ func enterDashRandom():
 		rX = 0
 		rY = 0
 	
-	dashAngle = to_local(GlobalRef.player.global_position + Vector2(rX,rY))
+	dashAngle = to_local(KineticGear.seenPos(GlobalRef.player.global_position) + Vector2(rX,rY))
 	dashTicks = 40 + (randi() % 40)
 	state = 1
 
@@ -191,7 +191,7 @@ func tranform():
 
 func _on_health_component_died():
 	var offset :Vector2 = Vector2(0,-64).rotated( getWorldRot(GlobalRef.player) )
-	global_position = GlobalRef.player.global_position + offset
+	global_position = KineticGear.seenPos(GlobalRef.player.global_position) + offset
 	
 	# this segment offsets the worm when it dies to make sure worm drops items
 	# above player rather than in the ground

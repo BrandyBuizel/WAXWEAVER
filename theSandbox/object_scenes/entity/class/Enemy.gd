@@ -105,13 +105,16 @@ func getDirectionTowardsPlayer() -> int:
 	if is_instance_valid(healthComp):
 		if healthComp.checkIfHasEffect("confused"):
 			targetdir *= -1
-	
+
 	return targetdir
 
 func getPlayerDistance():
 	var x = abs( GlobalRef.player.position.x - position.x )
 	var y = abs( GlobalRef.player.position.y - position.y )
-	return Vector2(x,y).length()
+	var d = Vector2(x,y).length()
+	if KineticGear.hidden(): # cardboard box: you are not seen
+		return maxf(d,260.0)
+	return d
 
 func getVelocity():
 	return velocity.rotated( -(PI/2) * getQuad(self)  )

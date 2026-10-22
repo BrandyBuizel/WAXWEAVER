@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemBlock" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemBlock.gd" id="1"]
+[ext_resource type="Texture2D" path="res://items/kinetic/deployerItem.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+blockID = 204
+itemName = "Deployer"
+subtext = ""
+desc = "Right click with blocks in hand to load it, empty hand to take them back. It places one per cycle in front of it. Wrench: rotate."
+texture = ExtResource("2")
+maxStackSize = 99
+clickToUse = false
+infiniteReach = false

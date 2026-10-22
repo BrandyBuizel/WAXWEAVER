@@ -27,6 +27,8 @@ var screenshotTick :int = 0 # just to make sure screenshot gets delayed
 func _ready():
 	
 	GlobalRef.hotbar = self
+	Options.updatedOptions.connect(applyBarStyle)
+	applyBarStyle()
 	
 	#assign self to slots
 	for slot in $Hotbar.get_children():
@@ -400,6 +402,18 @@ func interpretCommand(text):
 			if b == 0:
 				GlobalRef.sendError("ERROR: amount invalid")
 		
+		"fly":
+			var flySpeedArg = text.get_slice(" ",1)
+			var isFlying :bool
+			if flySpeedArg == "" or flySpeedArg == "fly":
+				isFlying = GlobalRef.player.toggleFly()
+			else:
+				isFlying = GlobalRef.player.toggleFly(float(flySpeedArg))
+			if isFlying:
+				GlobalRef.sendChat("Flight enabled! Double-tap space to start/stop flying.")
+				GlobalRef.sendChat("Space = up, shift = down. Speed: " + str(GlobalRef.player.flySpeed))
+			else:
+				GlobalRef.sendChat("Flight disabled.")
 		"noclip":
 			GlobalRef.player.toggleNoClip()
 			GlobalRef.sendChat("Toggled noclip")
@@ -669,3 +683,22 @@ func _on_changerecipedisplay_pressed():
 
 func _on_toggle_creative_pressed():
 	$Menu/CreativeMenu.visible = !$Menu/CreativeMenu.visible
+
+
+######################################################################
+########################## WIDESCREEN / BAR ##########################
+######################################################################
+
+## Stretches the top bar across the whole (wider) screen. The slots, health bar
+## and everything else stay where they are, centred on the screen.
+func setViewWidth(w:int):
+	var extra :float = float(w - 400)
+	$NinePatchRect2.offset_left = 2.0 - extra / 2.0
+	$NinePatchRect2.offset_right = 400.0 + extra / 2.0
+
+## "top bar" option: solid black bar or fully see-through.
+func applyBarStyle():
+	if Options.options.get("hudBarTransparent",false):
+		$NinePatchRect2.modulate.a = 0.0
+	else:
+		$NinePatchRect2.modulate.a = 1.0

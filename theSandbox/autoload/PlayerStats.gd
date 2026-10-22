@@ -30,6 +30,8 @@ var trinkets :Array[int]= [] # array of trinket ids
 var specialProperties :Array[String] = [] # array of special tags to give player
 var statusImmunities :Array[String]= []
 
+const MOON_GRAVITY_MULT :float = 0.3
+
 signal updatedStats
 
 ###################################
@@ -48,6 +50,8 @@ func getJump():
 	return BASEJUMP * jumpMult * -1.0
 
 func getGravity():
+	if GlobalRef.currentPlanet != null and GlobalRef.currentPlanet.planetType == "lunar":
+		return GRAVITY * MOON_GRAVITY_MULT # the moon is about a third of normal
 	return GRAVITY
 
 func getTerminalVelocity():

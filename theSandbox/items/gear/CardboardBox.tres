@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemArmorHelmet" load_steps=4 format=3]
+
+[ext_resource type="Texture2D" path="res://items/gear/cardboardArmor.png" id="1"]
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemArmorHelmet.gd" id="2"]
+[ext_resource type="Texture2D" path="res://items/gear/cardboard.png" id="3"]
+
+[resource]
+script = ExtResource("2")
+defense = 0
+armorTexture = ExtResource("1")
+itemName = "Cardboard Box"
+subtext = ""
+desc = "No protection. Crouch and you turn into a box: mobs cannot see you."
+texture = ExtResource("3")
+maxStackSize = 1
+clickToUse = false

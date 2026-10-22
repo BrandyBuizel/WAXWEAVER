@@ -61,7 +61,7 @@ func _process(delta):
 		if planet.DATAC.getTileData(tile.x,tile.y) > 1:
 			
 			BlockData.spawnBreakParticle(tile.x,tile.y,blockID,blockData["breakParticleID"],planet,0,true)
-			BlockData.spawnGroundItem(tile.x,tile.y,blockData["itemToDrop"],planet)
+			BlockData.spawnGroundItem(tile.x,tile.y,BlockData.getBlockDrop(blockID,blockData["itemToDrop"]),planet)
 			
 			if blockID == 33: # is chest
 				if savedChest != "poop":

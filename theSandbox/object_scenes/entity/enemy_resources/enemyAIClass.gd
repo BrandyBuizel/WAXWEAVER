@@ -17,6 +17,6 @@ func onSpawn(enemy):
 	pass
 
 func getAggro():
-	if is_instance_valid(GlobalRef.player):
+	if is_instance_valid(GlobalRef.player) and !KineticGear.hidden(): # cardboard box: you are not seen
 		return GlobalRef.player
 	return null

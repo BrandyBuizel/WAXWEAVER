@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="ItemTrinket" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemTrinket.gd" id="1"]
+[ext_resource type="Texture2D" path="res://items/kinetic/goggles.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+description = ""
+specialProperties = ["goggles"]
+sceneToLoad = ""
+addSpeed = 0.0
+addJump = 0.0
+addSwim = 0.0
+extraJumps = 0
+addDefense = 0
+addMeleeDamage = 0.0
+addRangedDamage = 0.0
+addHealingMultiplier = 0.0
+addKnockback = 0.0
+addAttackSpeed = 0.0
+addcriticalStrikeChance = 0
+miningMultiplier = 0.0
+statusImmunities = []
+itemName = "Engineer's Goggles"
+subtext = ""
+desc = "Equip as a trinket. Hover a kinetic block to see its SU stress readout."
+texture = ExtResource("2")
+maxStackSize = 1
+clickToUse = false
+infiniteReach = false

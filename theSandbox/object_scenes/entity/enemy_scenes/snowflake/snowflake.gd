@@ -28,17 +28,17 @@ func blast(delta):
 		var ins = ball.instantiate()
 		ins.global_position = global_position
 		ins.planet = planet
-		ins.velocity = to_local(GlobalRef.player.global_position).normalized() * 450
+		ins.velocity = to_local(KineticGear.seenPos(GlobalRef.player.global_position)).normalized() * 450
 		ins.hitplayer = true
 		get_parent().add_child(ins)
 		ins.global_position = global_position
 		tick = 0
 	
-	if to_local(GlobalRef.player.global_position).length() > 200:
+	if to_local(KineticGear.seenPos(GlobalRef.player.global_position)).length() > 200:
 		state = 0
 		return
 	
-	$playerCast.target_position = to_local(GlobalRef.player.global_position)
+	$playerCast.target_position = to_local(KineticGear.seenPos(GlobalRef.player.global_position))
 	if $playerCast.is_colliding():
 		state = 0
 	
@@ -65,8 +65,8 @@ func hunt(delta):
 	sprite.rotation = getWorldRot(self)
 	$wallcast.target_position = velocity.normalized() * 6
 	
-	if to_local(GlobalRef.player.global_position).length() < 200:
-		$playerCast.target_position = to_local(GlobalRef.player.global_position)
+	if to_local(KineticGear.seenPos(GlobalRef.player.global_position)).length() < 200:
+		$playerCast.target_position = to_local(KineticGear.seenPos(GlobalRef.player.global_position))
 		if !$playerCast.is_colliding():
 			state = 1
 			tick = 0

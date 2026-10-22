@@ -44,6 +44,7 @@ func _ready():
 	$dropShadowViewport.world_2d = get_tree().root.get_viewport().world_2d
 	GlobalRef.lightRenderVP = $lightRenderViewport
 	GlobalRef.dropShadowRenderVP = $dropShadowViewport
+	Options.setInGame(true) # turns on the widescreen setting
 	
 	Network.connect("updatePlayerList",createPlayers)
 	if Network.isMultiplayerGame:
@@ -189,7 +190,7 @@ func saveGameToFile():
 	
 	PlayerData.emit_signal("updateInventory")
 	PlayerData.emit_signal("armorUpdated")
-
+	
 # loading files
 func loadSaveFromFile():
 	# check if multiplayer world first
@@ -304,6 +305,8 @@ func _process(delta):
 			print("Game autosaved!")
 	
 	if Input.is_action_just_pressed("pause"):
+		if BulletHell.active or Rocket.launching: # no pause menu during the rocket / bullet hell cutscenes
+			return
 		if GlobalRef.hotbar.cheatOrigin.visible:
 			return
 		get_tree().paused = !get_tree().paused
@@ -338,7 +341,7 @@ func fullscreentoggle():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-
+	
 func multiplayerWorldLoad():
 	var worldData :Dictionary= Network.recievedWorldPackets
 	

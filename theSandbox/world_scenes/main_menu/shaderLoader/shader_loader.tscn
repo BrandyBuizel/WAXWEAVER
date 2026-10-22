@@ -1,22 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://b775llbxvt81"]
+[gd_scene format=3 uid="uid://b775llbxvt81"]
 
-[ext_resource type="Script" path="res://world_scenes/main_menu/shaderLoader/shader_loader.gd" id="1_ge4n2"]
+[ext_resource type="Script" uid="uid://bbempog7vsrho" path="res://world_scenes/main_menu/shaderLoader/shader_loader.gd" id="1_ge4n2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_stqqx"]
 font_size = 32
 font_color = Color(0.137255, 0.137255, 0.137255, 1)
 
-[node name="shaderLoader" type="Node2D"]
+[node name="shaderLoader" type="Node2D" unique_id=1802819909]
 script = ExtResource("1_ge4n2")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=432366452]
 offset_left = -65.0
 offset_top = -56.0
 offset_right = 458.0
 offset_bottom = 347.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=654893245]
 offset_top = 100.0
 offset_right = 399.0
 offset_bottom = 242.0
@@ -24,10 +24,10 @@ text = "click to focus window"
 label_settings = SubResource("LabelSettings_stqqx")
 horizontal_alignment = 1
 
-[node name="container" type="Node2D" parent="."]
+[node name="container" type="Node2D" parent="." unique_id=294305025]
 position = Vector2(197, 167)
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1769324373]
 modulate = Color(1, 1, 1, 0)
 offset_left = -25.0
 offset_top = -24.0

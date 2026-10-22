@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemBlock" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemBlock.gd" id="1"]
+[ext_resource type="Texture2D" path="res://items/kinetic/depotItem.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+blockID = 187
+itemName = "Depot"
+subtext = ""
+desc = "Right click for the menu: what goes in on the left comes out on the right. Arms can use it."
+texture = ExtResource("2")
+maxStackSize = 99
+clickToUse = false
+infiniteReach = false

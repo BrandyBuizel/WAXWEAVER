@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemMechanicalArm" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemMechanicalArm.gd" id="1"]
+[ext_resource type="Texture2D" path="res://items/kinetic/armItem.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+blockID = 206
+itemName = "Mechanical Arm"
+subtext = ""
+desc = "Hold it: right click a block to TAKE from (blue), right click another to PLACE into (green), then place the arm within 5 blocks of both. Powered through a cog on top."
+texture = ExtResource("2")
+maxStackSize = 99
+clickToUse = false
+infiniteReach = false

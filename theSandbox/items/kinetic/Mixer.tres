@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemBlock" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemBlock.gd" id="1"]
+[ext_resource type="Texture2D" path="res://items/kinetic/mixerItem.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+blockID = 196
+itemName = "Mechanical Mixer"
+subtext = ""
+desc = "Sits on a basin. Powered through a cog beside it. Mixes a copper bar and a gold bar into 2 brass bars."
+texture = ExtResource("2")
+maxStackSize = 99
+clickToUse = false
+infiniteReach = false

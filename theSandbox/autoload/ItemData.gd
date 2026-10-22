@@ -453,6 +453,68 @@ var data = {
 	6234:load("res://items/blocks/building/shingle/PurpleShingle.tres"),
 	6235:load("res://items/blocks/building/shingle/YellowShingle.tres"),
 	
+	
+	# custom items
+	7000:load("res://items/blocks/custom/CrimsonTile.tres"),
+	7001:load("res://items/blocks/custom/AzureTile.tres"),
+	7002:load("res://items/blocks/custom/JadeTile.tres"),
+	7003:load("res://items/blocks/custom/GoldenTile.tres"),
+	7004:load("res://items/blocks/custom/ObsidianTile.tres"),
+	7005:load("res://items/blocks/custom/EmberTile.tres"),
+	7006:load("res://items/blocks/Custom/Testblock.tres"),
+	7007:load("res://items/blocks/Custom/TestBlockinf.tres"),
+	
+	# kinetic items
+	7100:load("res://items/kinetic/Shaft.tres"),
+	7101:load("res://items/kinetic/WaterWheel.tres"),
+	7102:load("res://items/kinetic/MechDrill.tres"),
+	7103:load("res://items/kinetic/Wrench.tres"),
+	7104:load("res://items/kinetic/Goggles.tres"),
+	7105:load("res://items/kinetic/CogSmall.tres"),
+	7106:load("res://items/kinetic/CogLarge.tres"),
+	7107:load("res://items/kinetic/Gearbox.tres"),
+	7108:load("res://items/kinetic/CreativeMotor.tres"),
+	7109:load("res://items/kinetic/Speedometer.tres"),
+	7110:load("res://items/kinetic/Stressometer.tres"),
+	7111:load("res://items/kinetic/Casing.tres"),
+	7112:load("res://items/kinetic/LargeWheel.tres"),
+	7113:load("res://items/kinetic/Belt.tres"),
+	7114:load("res://items/kinetic/Depot.tres"),
+	7115:load("res://items/kinetic/Press.tres"),
+	7116:load("res://items/kinetic/Funnel.tres"),
+	7120:load("res://items/kinetic/CopperSheet.tres"),
+	7121:load("res://items/kinetic/IronSheet.tres"),
+	7122:load("res://items/kinetic/GoldSheet.tres"),
+	7117:load("res://items/kinetic/Millstone.tres"),
+	7118:load("res://items/kinetic/Crusher.tres"),
+	7119:load("res://items/kinetic/Basin.tres"),
+	7123:load("res://items/kinetic/Mixer.tres"),
+	7130:load("res://items/kinetic/CopperDust.tres"),
+	7131:load("res://items/kinetic/IronDust.tres"),
+	7132:load("res://items/kinetic/GoldDust.tres"),
+	7140:load("res://items/kinetic/BrassBar.tres"),
+	7124:load("res://items/kinetic/Fan.tres"),
+	7125:load("res://items/kinetic/Chute.tres"),
+	7126:load("res://items/kinetic/Saw.tres"),
+	7127:load("res://items/kinetic/Deployer.tres"),
+	7128:load("res://items/kinetic/Arm.tres"),
+	7150:load("res://items/gear/DivingHelmet.tres"),
+	7151:load("res://items/gear/DivingBoots.tres"),
+	7152:load("res://items/gear/CardboardBox.tres"),
+	7153:load("res://items/gear/Jetpack.tres"),
+	# nuggets, andesite, rocket and moon items
+	7160:load("res://items/rocket/Rocket.tres"),
+	7161:load("res://items/rocket/RocketKey.tres"),
+	7162:load("res://items/rocket/LunarBeacon.tres"),
+	7170:load("res://items/material/bars/CopperNugget.tres"),
+	7171:load("res://items/material/bars/GoldNugget.tres"),
+	7172:load("res://items/material/bars/IronNugget.tres"),
+	7173:load("res://items/material/bars/BrassNugget.tres"),
+	7200:load("res://items/andesite/Andesite.tres"),
+	7201:load("res://items/andesite/AndesiteAlloy.tres"),
+	7210:load("res://items/blocks/moon/MoonRock.tres"),
+	7211:load("res://items/blocks/moon/MoonDust.tres"),
+	7212:load("res://items/blocks/moon/LunarCrystal.tres"),
 }
 
 var heldItemAnims = {
@@ -472,7 +534,7 @@ var heldItemAnims = {
 
 func matchItemAnimation(id):
 	var d = getItem(id)
-	if d is ItemBlock or d is ItemPlant or d is ItemBucket or d is ItemTypeBlock or d is ItemWall:
+	if d is ItemBlock or d is ItemPlant or d is ItemBucket or d is ItemWrench or d is ItemTypeBlock or d is ItemWall:
 		return "itemSwingNoHitbox"
 	if d is ItemDamage:
 		return "itemSwing"

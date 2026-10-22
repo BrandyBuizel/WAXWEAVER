@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemBlock" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemBlock.gd" id="1"]
+[ext_resource type="Texture2D" path="res://items/kinetic/sawItem.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+blockID = 202
+itemName = "Mechanical Saw"
+subtext = ""
+desc = "Like the drill, but it cuts wood and plants twice as fast. Powered from the back. Wrench: rotate."
+texture = ExtResource("2")
+maxStackSize = 99
+clickToUse = false
+infiniteReach = false

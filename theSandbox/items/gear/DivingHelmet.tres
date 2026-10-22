@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemArmorHelmet" load_steps=4 format=3]
+
+[ext_resource type="Texture2D" path="res://items/gear/divingHelmetArmor.png" id="1"]
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemArmorHelmet.gd" id="2"]
+[ext_resource type="Texture2D" path="res://items/gear/divingHelmet.png" id="3"]
+
+[resource]
+script = ExtResource("2")
+defense = 1
+armorTexture = ExtResource("1")
+itemName = "Copper Diving Helmet"
+subtext = ""
+desc = "Wear it with the diving boots to walk at normal speed under water. Each piece gives back half."
+texture = ExtResource("3")
+maxStackSize = 1
+clickToUse = false

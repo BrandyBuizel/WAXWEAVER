@@ -3,6 +3,8 @@ extends CanvasLayer
 @onready var parent = get_parent()
 
 func _ready():
+	Options.viewWidthChanged.connect(onViewWidthChanged)
+	onViewWidthChanged(Options.getViewWidth())
 	Steam.lobby_created.connect(_on_lobby_created) 
 	
 	if Network.isMultiplayerGame:
@@ -13,7 +15,8 @@ func _ready():
 func _process(delta):
 	var secsSinceSave = int( Time.get_unix_time_from_system() ) - int(parent.lastSave)
 	$lastsave.text = "last saved: " + str(secsSinceSave) + "s ago"
-	$MouseIcon.position = get_viewport().get_mouse_position()
+	$MouseIcon.position = get_viewport().get_mouse_position() - offset
+
 
 # save game
 func _on_savegame_pressed():
@@ -97,3 +100,14 @@ func _on_lobby_created(connect:int, this_lobby_id:int):
 	
 	$lobbyID/Label2.text = "lobby id: " + str(this_lobby_id)
 	$lobbyID.show()
+
+
+## The pause screen is laid out for 400px, so centre it and widen the dark overlay.
+func onViewWidthChanged(w:int):
+	var extra :float = float(w - 400)
+	var extraY :float = float(Options.getViewHeight() - 300)
+	offset = Vector2(extra / 2.0, extraY / 2.0)
+	$ColorRect.offset_left = -11.0 - extra / 2.0
+	$ColorRect.offset_right = 410.0 + extra / 2.0
+	$ColorRect.offset_top = -7.0 - extraY / 2.0
+	$ColorRect.offset_bottom = 310.0 + extraY / 2.0

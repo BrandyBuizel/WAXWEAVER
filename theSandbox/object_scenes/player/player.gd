@@ -52,6 +52,12 @@ var lastTileItemUsedOn := Vector2(-10,-10)
 var noClip = false
 var noClipSpeed = 200
 
+# creative-style flying (collision stays on). double-tap space to toggle, space = up, shift/S = down
+var flyAllowed :bool = false # set by /fly; lets double-tap space start/stop flying
+var flying :bool = false
+var flySpeed :float = 300.0
+var flyTapTimer :float = 0.0 # time left to count a second space tap
+
 var tick = 0
 var blinkTick :float= 0.0
 
@@ -227,6 +233,11 @@ func _process(delta):
 
 func determineMovementState(delta):
 	
+	if GlobalRef.controlsLocked: # rocket launch cutscene: no control at all
+		velocity = Vector2.ZERO
+		ensureCamPosition()
+		return
+	
 	if noClip:
 		noClipMovement(delta)
 		return
@@ -256,7 +267,7 @@ func noClipMovement(delta):
 			noClipSpeed -= 100
 			noClipSpeed = max(0,noClipSpeed)
 		
-	velocity = dir.normalized() * noClipSpeed
+	velocity = dir.limit_length(1.0) * noClipSpeed # limit_length keeps keyboard diagonals the same as normalized()
 	move_and_slide()
 	
 	if !dead:
@@ -291,6 +302,17 @@ func normalMovement(delta):
 	$itemWorldRotation.rotation = sprite.rotation
 	up_direction = Vector2(0,-1).rotated(rotSource)
 	
+	# double-tap space toggles flight (only after /fly has allowed it)
+	if flyTapTimer > 0.0:
+		flyTapTimer -= delta
+	if flyAllowed and !GlobalRef.chatIsOpen and Input.is_action_just_pressed("jump"):
+		if flyTapTimer > 0.0:
+			flying = !flying
+			flyTapTimer = 0.0
+			airTime = 0.0
+		else:
+			flyTapTimer = 0.3
+	
 	var onFloor = isOnFloor(rotSource)
 	var speed = Stats.getSpeed()
 	
@@ -304,10 +326,13 @@ func normalMovement(delta):
 	var doubleTapped = false
 	
 	var dir = 0
-	dir = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
+	# analog is -1..1 (partial stick = slower walk). dir stays -1/0/1 for facing, animation and netcode.
+	var analog :float = clampf(Input.get_axis("move_left","move_right") * 1.08, -1.0, 1.0) # 1.08: a stick rarely reads a perfect 1.0
+	dir = int(signf(analog))
 	
 	if healthComponent.checkIfHasEffect("confused"):
 		dir *= -1
+		analog *= -1.0
 	
 	if dir != 0:
 		var doubletapWindowSecs = (1.0/6.0) # NOTE: make this a setting?
@@ -328,6 +353,7 @@ func normalMovement(delta):
 	
 	if GlobalRef.chatIsOpen:
 		dir = 0
+		analog = 0.0
 	
 	var speedAdd :float= 0.0
 	match floorDetector.getFloorTile():
@@ -336,11 +362,12 @@ func normalMovement(delta):
 		106:
 			speedAdd = -GlobalRef.conveyorspeed
 	
+	
 	var newVel = velocity.rotated(-rotSource)
 	if beingKnockedback:
-		newVel.x = lerp(newVel.x, (dir * speed) + speedAdd, 1.0-pow(2.0,(-delta/0.4562))) # make framerate independent
+		newVel.x = lerp(newVel.x, (analog * speed) + speedAdd, 1.0-pow(2.0,(-delta/0.4562))) # make framerate independent
 	else:
-		newVel.x = lerp(newVel.x, (dir * speed) + speedAdd, 1.0-pow(2.0,(-delta/0.04)))
+		newVel.x = lerp(newVel.x, (analog * speed) + speedAdd, 1.0-pow(2.0,(-delta/0.04)))
 	
 	if doubleTapped and canDash and dashDelaySecs <= 0 and Stats.hasProperty("dash"):
 		newVel.x = 1800.0 * dir * Stats.speedMult
@@ -373,6 +400,20 @@ func normalMovement(delta):
 		updateLight()
 		ensureCamPosition()
 		return
+	
+	if flying:
+		# ignore gravity completely: start from last frame's velocity, not newVel (which has gravity added)
+		# y is "up/down" in the player's local (planet-rotated) space
+		var flyDir :float = 0.0
+		if !GlobalRef.chatIsOpen:
+			flyDir = Input.get_action_strength("move_down") - Input.get_action_strength("jump")
+			if Input.is_action_pressed("shift"):
+				flyDir = 1.0 # shift = descend, like minecraft
+		var lastY :float = velocity.rotated(-rotSource).y
+		newVel.y = lerp(lastY, flyDir * flySpeed, 1.0-pow(2.0,(-delta/0.05)))
+		if flyDir == 0.0 and absf(newVel.y) < 5.0:
+			newVel.y = 0.0 # perfectly still when hovering
+		airTime = 0.0 # no fall damage while flying
 	
 	if healthComponent.checkIfHasEffect("frozen"):
 		var newerVel = velocity.rotated(-rotSource)
@@ -436,7 +477,7 @@ func WATERJUMPCAMERALETSGO(body,vel,rot,onFloor,delta):
 	# attach to ladder if holding up directional
 	if lastOnLadder > 0:
 		lastOnLadder -= 60 * delta # subtract ladder ticks
-	if body.DATAC.getTileData(tile.x,tile.y) == 25:
+	if body.DATAC.getTileData(tile.x,tile.y) == 25 and !flying:
 		if Input.is_action_pressed("move_up") or Input.is_action_pressed("move_down"):
 			
 			if lastOnLadder > 0.0:
@@ -475,7 +516,9 @@ func WATERJUMPCAMERALETSGO(body,vel,rot,onFloor,delta):
 		
 		
 		lerpCameraRotation(rot,delta)
-		vel.x = clamp(vel.x, -Stats.getSwim(),Stats.getSwim() )
+		# copper diving gear gives back the speed water takes away (half for each piece)
+		var swimLimit :float = lerpf(Stats.getSwim(),Stats.getSpeed(),KineticGear.divingFactor())
+		vel.x = clamp(vel.x, -swimLimit,swimLimit )
 		airTime = 0.0 # cancel fall damage
 		return vel
 	
@@ -604,7 +647,7 @@ func ladderMovement(delta):
 		movementState = 0
 		newVel.y = -250 
 		sendMovementPacket(0,250,0)
-	
+		
 	
 	var tile = obj.posToTile(obj.to_local(global_position))
 	
@@ -956,7 +999,7 @@ func closeDoor(tile,body):
 	
 	var d = BlockData.placeDoor(tile.x,tile.y,body,info % 4,(info/8)*2,doorSwing)
 	body.editTiles(d)
-
+	
 func chairSit(tile,editBody):
 	animationPlayer.play("sit")
 	setAllPlayerFrames(7)
@@ -1257,7 +1300,8 @@ func isUnderCeiling(rot):
 
 func enteredNewChunk(newChunk):
 	var planetRadius = planetOn.SIZEINCHUNKS * 32
-	var newPos = (newChunk * 64) - Vector2(planetRadius,planetRadius) - Vector2(288,288)
+	# was 288: 256 centres the 576px lightmap on the player's chunk (lit area >= 512px wide)
+	var newPos = (newChunk * 64) - Vector2(planetRadius,planetRadius) - Vector2(256,256)
 	GlobalRef.lightmap.pushUpdate(planetOn,newPos)
 	planetOn.loadChunkArea(newChunk)
 
@@ -1331,7 +1375,7 @@ func updateLightStatic():
 	var pos = position
 
 	var currentChunk = Vector2(int(pos.x+1024)/64,int(pos.y+1024)/64)
-	var newPos = (currentChunk * 64) - Vector2(1024,1024) - Vector2(288,288)
+	var newPos = (currentChunk * 64) - Vector2(1024,1024) - Vector2(256,256)
 	GlobalRef.lightmap.pushUpdate(planetOn,newPos)
 
 
@@ -1417,6 +1461,18 @@ func _unhandled_input(event):
 			if event["pressed"]:
 				$rightClicker.onRightClick()
 				
+
+func toggleFly(speed :float = -1.0):
+	# /fly -> turns the ability on/off. double-tap space then starts/stops flying
+	if speed > 0.0:
+		flySpeed = speed
+		flyAllowed = true
+	else:
+		flyAllowed = !flyAllowed
+	if !flyAllowed:
+		flying = false
+	airTime = 0.0
+	return flyAllowed
 
 func toggleNoClip():
 	noClip = !noClip

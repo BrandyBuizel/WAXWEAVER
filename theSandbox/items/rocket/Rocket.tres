@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemMultitile" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemMultitile.gd" id="1"]
+[ext_resource type="Texture2D" path="res://items/rocket/rocketItem.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+blockID = 209
+size = Vector2i(2, 5)
+grounded = true
+needsWalls = false
+itemName = "Rocket Ship"
+subtext = ""
+desc = "Place it, right-click it holding the Rocket Key in your inventory.
+Takes you to the Moon and back."
+texture = ExtResource("2")
+maxStackSize = 9
+clickToUse = false
+infiniteReach = false

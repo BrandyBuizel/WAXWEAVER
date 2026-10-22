@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemWrench" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemWrench.gd" id="1"]
+[ext_resource type="Texture2D" path="res://items/kinetic/wrench.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+itemName = "Wrench"
+subtext = ""
+desc = "Left click picks up machines into your inventory.\nRight click rotates them."
+texture = ExtResource("2")
+maxStackSize = 1
+clickToUse = true
+infiniteReach = false

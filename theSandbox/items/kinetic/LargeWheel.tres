@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemLargeWheel" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemLargeWheel.gd" id="1"]
+[ext_resource type="Texture2D" path="res://items/kinetic/largeWheelItem.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+blockID = 182
+itemName = "Large Water Wheel"
+subtext = ""
+desc = "3x3 wheel. Needs water in at least 3 of its tiles. 16 RPM, 1024 SU. Axle ends are in the middle of two sides. Wrench: change axle."
+texture = ExtResource("2")
+maxStackSize = 99
+clickToUse = false
+infiniteReach = false

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemBlock" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemBlock.gd" id="1"]
+[ext_resource type="Texture2D" path="res://items/kinetic/cogLargeItem.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+blockID = 175
+itemName = "Large Cog"
+subtext = ""
+desc = "Meshes with cogs. A large cog driven by a small cog turns at half speed. Wrench: change axis."
+texture = ExtResource("2")
+maxStackSize = 99
+clickToUse = false
+infiniteReach = false

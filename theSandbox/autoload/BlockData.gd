@@ -11,6 +11,20 @@ var lookup = null
 
 var replaceableBlocks :Array[int] = [0,1,17,77,82,90,131]
 
+# CUSTOM BLOCKS: host blockID (the engine block being re-skinned) -> custom item ID dropped when it breaks.
+# Block types themselves live in the compiled DLL, so each custom block borrows one existing block.
+var customBlockDrops :Dictionary = {
+	61: 7000, # Crimson Tile
+	65: 7001, # Azure Tile
+	109: 7002, # Jade Tile
+	149: 7003, # Golden Tile
+	150: 7004, # Obsidian Tile
+	89: 7005, # Ember Tile
+}
+
+func getBlockDrop(blockID:int, defaultDrop:int) -> int:
+	return customBlockDrops.get(blockID, defaultDrop)
+
 var aestheticCommands :Array[String] = ["leaf","drip","leafrustle","sparkle","furnacesound","spark","windchime","shopCheck"]
 
 #blockentitycontainers
@@ -65,7 +79,7 @@ func breakBlock(x,y,planet,blockID,infoID,doneByPlayer:bool=false):
 	var data = theChunker.getBlockDictionary(blockID)
 	
 	spawnBreakParticle(x,y,blockID,data["breakParticleID"],planet,infoID,doneByPlayer)
-	spawnGroundItem(x,y,data["itemToDrop"],planet,blockID)
+	spawnGroundItem(x,y,getBlockDrop(blockID,data["itemToDrop"]),planet,blockID)
 	
 	planet.editTiles( theChunker.runBreak(planet.DATAC,Vector2i.ZERO,x,y,blockID) )
 
@@ -305,6 +319,9 @@ func getSoundMaterialID(blockID) -> int:
 	return d["soundMaterial"]
 
 func doBlockAction(action:String,tileX:int,tileY:int,planet):
+	if action.begins_with("kinetic"):
+		KineticItems.run(action,tileX,tileY,planet)
+		return
 	match action:
 		"drip":
 			var ins = load("res://object_scenes/entity/enemy_scenes/ambientEntities/caveDrip/caveDrip.tscn").instantiate()

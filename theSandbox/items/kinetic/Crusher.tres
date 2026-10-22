@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemBlock" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://item_resources/item_classes/ItemBlock.gd" id="1"]
+[ext_resource type="Texture2D" path="res://items/kinetic/crusherItem.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+blockID = 193
+itemName = "Crushing Wheel"
+subtext = ""
+desc = "Round wheel: it shows CW or CCW. Place two with ONE gap tile between them, left one clockwise, right one counter-clockwise. Right click for the menu (input on top, output at the bottom). 1 ore gives 3 dust."
+texture = ExtResource("2")
+maxStackSize = 99
+clickToUse = false
+infiniteReach = false

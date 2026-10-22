@@ -31,6 +31,8 @@ var creatures = {
 	"worm":"res://object_scenes/entity/enemy_scenes/babyWorm/baby_worm.tscn",
 	"mummy":"res://object_scenes/entity/enemy_scenes/mummyPraffin/mummyPraffin.tscn",
 	"snail":"res://object_scenes/entity/enemy_scenes/snail/snail.tscn",
+	"alien":"res://object_scenes/entity/enemy_scenes/alien/alien.tscn",
+	"alienBrute":"res://object_scenes/entity/enemy_scenes/alien/alienBrute.tscn",
 	
 	# bosses
 	"bossShip":"res://object_scenes/entity/enemy_scenes/bosses/shipBossForest/boss_ship.tscn",

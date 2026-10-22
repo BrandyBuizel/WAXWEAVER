@@ -27,6 +27,7 @@ var playerSide = 0 # 0 : facing left, 1 : facing right
 
 var chatIsOpen = false
 var playerCanUseItem = true
+var controlsLocked = false # set by the rocket cutscene
 
 var playerSpawn = null
 var playerSpawnPlanet = null
@@ -79,6 +80,7 @@ func clearEverything():
 	playerSide = 0
 	chatIsOpen = false
 	playerCanUseItem = true
+	controlsLocked = false
 	playerSpawn = null
 	playerSpawnPlanet = null
 	dayLength = 9000

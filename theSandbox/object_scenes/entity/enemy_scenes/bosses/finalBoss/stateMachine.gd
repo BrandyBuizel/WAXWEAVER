@@ -35,7 +35,7 @@ func _state_logic(delta):
 		states.idle:
 			parent.idlePhase1(delta)
 			parent.eyeLookAtPlayer()
-			if GlobalRef.player.global_position.distance_to(parent.global_position) < 400:
+			if KineticGear.seenPos(GlobalRef.player.global_position).distance_to(parent.global_position) < 400:
 				idleTicks += 1
 			else:
 				GlobalRef.playerGravityOverride = -1
@@ -60,7 +60,7 @@ func _state_logic(delta):
 		states.idlephase2:
 			parent.idlePhase1(delta)
 			parent.eyeLookAtPlayerPhase2(delta)
-			if GlobalRef.player.global_position.distance_to(parent.global_position) < 400:
+			if KineticGear.seenPos(GlobalRef.player.global_position).distance_to(parent.global_position) < 400:
 				idleTicks += 1
 			else:
 				GlobalRef.playerGravityOverride = -1 # make sure grav is reset is player goes too far away
@@ -187,7 +187,7 @@ func _enter_state(new_state,old_state):
 			tween.tween_property(parent.fade,"color:a",1.0,1.5)
 			await tween.finished
 			
-			parent.global_position = GlobalRef.player.global_position + Vector2(0,-72)
+			parent.global_position = KineticGear.seenPos(GlobalRef.player.global_position) + Vector2(0,-72)
 			
 			var tweenout = get_tree().create_tween()
 			tweenout.tween_property(parent.fade,"color:a",0.0,1.5)

@@ -11,6 +11,39 @@ var bgtween :Tween = null
 
 func _ready():
 	GlobalRef.camera = self
+	Options.viewWidthChanged.connect(onViewWidthChanged)
+	onViewWidthChanged(Options.getViewWidth())
+
+## Called when the "view width" setting changes (extra pixels are added on both sides).
+var viewWidth :int = 400
+var viewHeight :int = 300
+
+func onViewWidthChanged(w:int):
+	viewWidth = w
+	viewHeight = Options.getViewHeight()
+	# backgrounds are anchored to the top-left of the screen, so move them to the new corner
+	$Backgrounds.position = Vector2(-w / 2.0, -viewHeight / 2.0)
+	# the HUD stays centred; only its top bar stretches across the wider screen
+	$HotbarBanner.setViewWidth(w)
+	for bg in bgHolder.get_children():
+		fitBackground(bg)
+
+## Stretches gradient skies (sky/sun) sideways so they still cover a widened screen.
+func fitBackground(bg:Node):
+	var w :int = viewWidth
+	var h :int = viewHeight
+	for s in bg.find_children("*","Sprite2D",true,false):
+		if !(s.texture is GradientTexture1D or s.texture is GradientTexture2D):
+			continue
+		if !s.has_meta("baseScale"):
+			s.set_meta("baseScale",s.scale)
+			s.set_meta("basePos",s.position)
+		var baseScale :Vector2 = s.get_meta("baseScale")
+		var basePos :Vector2 = s.get_meta("basePos")
+		# these sprites are rotated 90 degrees, so their screen-width is scale.y
+		# (and their screen-height is scale.x)
+		s.scale = Vector2(baseScale.x * (h / 300.0), baseScale.y * (w / 400.0))
+		s.position = basePos + Vector2((w - 400) / 2.0, (h - 300) / 2.0)
 
 func cpass(motion):
 	compass.rotation = -rotation
@@ -44,6 +77,7 @@ func swapBackgrounds(scene:String):
 	var newBG = load(scene).instantiate()
 	newBG.modulate.a = 0.0
 	bgHolder.add_child(newBG)
+	fitBackground(newBG)
 	
 	# cool fade
 	bgtween = get_tree().create_tween()
@@ -80,6 +114,7 @@ func changeBG(file):
 	var newBG = load(file).instantiate()
 	newBG.modulate.a = 0.0
 	bgHolder.add_child(newBG)
+	fitBackground(newBG)
 	
 	# cool fade
 	bgtween = get_tree().create_tween()
