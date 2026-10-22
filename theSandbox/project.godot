@@ -24,6 +24,10 @@ boot_splash/stretch_mode=0
 boot_splash/use_filter=false
 config/icon="res://icon.png"
 
+[audio]
+
+buses/default_bus_layout="uid://dnv5iee1ihp1w"
+
 [autoload]
 
 SoundManager="*res://autoload/SoundManager.gd"
@@ -44,9 +48,13 @@ Saving="*res://autoload/Saving.gd"
 Options="*res://autoload/Options.gd"
 Ngio="res://autoload/ngio.gd"
 AchievementData="*res://autoload/AchievementData.gd"
-Network="*res://autoload/Network.gd"
 NG="*res://addons/newgrounds/scripts/newgrounds.tscn"
 NGCloudSave="*res://addons/newgrounds/scripts/newgrounds_cloudsave.gd"
+Network="*res://autoload/Network.gd"
+Gamepad="*res://autoload/Gamepad.gd"
+DebugMenu="*res://autoload/DebugMenu.gd"
+Rocket="*res://autoload/Rocket.gd"
+BulletHell="*res://autoload/BulletHell.gd"
 
 [debug]
 
@@ -75,6 +83,7 @@ folder_colors={
 "res://block_resources/": "yellow",
 "res://item_resources/": "green",
 "res://items/": "yellow",
+"res://music/": "teal",
 "res://object_scenes/": "teal",
 "res://sound/": "blue",
 "res://ui_scenes/": "purple",
