@@ -347,3 +347,8 @@ textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 anti_aliasing/screen_space_roughness_limiter/enabled=false
+
+[steam]
+
+initialization/app_data/app_id=3599070
+initialization/processes/initialize_on_startup=true
