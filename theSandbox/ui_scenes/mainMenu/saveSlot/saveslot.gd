@@ -83,7 +83,7 @@ func changeArmor(gameData:Dictionary):
 
 func _on_text_button_pressed():
 	Saving.loadedFile = saveFile
-	get_tree().change_scene_to_file("res://world_scenes/system/system.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://world_scenes/system/system.tscn")
 
 func _on_create_pressed():
 	menu.createNewSave(self)
@@ -97,7 +97,7 @@ func createNewWorld():
 	GlobalRef.clearEverything()
 	PlayerData.initializeInventory()
 	
-	get_tree().change_scene_to_file("res://world_scenes/system/system.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://world_scenes/system/system.tscn")
 
 func _on_delete_pressed():
 	menu.areyousuredelete(self)

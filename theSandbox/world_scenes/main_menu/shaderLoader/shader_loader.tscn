@@ -6,17 +6,17 @@
 font_size = 32
 font_color = Color(0.137255, 0.137255, 0.137255, 1)
 
-[node name="shaderLoader" type="Node2D" unique_id=1546930269]
+[node name="shaderLoader" type="Node2D" unique_id=922439813]
 script = ExtResource("1_ge4n2")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1726105531]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1172103428]
 offset_left = -65.0
 offset_top = -56.0
 offset_right = 458.0
 offset_bottom = 347.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="." unique_id=1721987567]
+[node name="Label" type="Label" parent="." unique_id=270481914]
 offset_top = 100.0
 offset_right = 399.0
 offset_bottom = 242.0
@@ -24,10 +24,10 @@ text = "click to focus window"
 label_settings = SubResource("LabelSettings_stqqx")
 horizontal_alignment = 1
 
-[node name="container" type="Node2D" parent="." unique_id=2133509667]
+[node name="container" type="Node2D" parent="." unique_id=2145220832]
 position = Vector2(197, 167)
 
-[node name="Button" type="Button" parent="." unique_id=666531836]
+[node name="Button" type="Button" parent="." unique_id=511278707]
 modulate = Color(1, 1, 1, 0)
 offset_left = -25.0
 offset_top = -24.0
