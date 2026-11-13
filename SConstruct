@@ -4,6 +4,11 @@ import sys
 
 env = SConscript("godot-cpp/SConstruct")
 
+if env["platform"] == "linux":
+    if os.environ.get("LINUX_CC") and os.environ.get("LINUX_CXX"):
+        env["CC"] = os.environ["LINUX_CC"]
+        env["CXX"] = os.environ["LINUX_CXX"]
+
 # For reference:
 # - CCFLAGS are compilation flags shared between C and C++
 # - CFLAGS are for C-specific compilation flags
@@ -25,7 +30,7 @@ if env["platform"] == "macos":
     )
 else:
     library = env.SharedLibrary(
-        "theSandbox/bin/gdexample.{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
+        "theSandbox/bin/gdexample{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
         source=sources,
     )
 

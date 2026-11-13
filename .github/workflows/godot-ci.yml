@@ -67,13 +67,11 @@ jobs:
           ARCHITECTURE: ${{ matrix.architecture }}
         run: |
           if [ "$ARCHITECTURE" = "arm64" ]; then
-            scons platform=linux target=template_release arch=arm64 \
-              CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ \
-              custom_api_file=godot-cpp/gdextension/extension_api.json
-          else
-            scons platform=linux target=template_release arch=x86_64 \
-              custom_api_file=godot-cpp/gdextension/extension_api.json
+            export LINUX_CC=aarch64-linux-gnu-gcc
+            export LINUX_CXX=aarch64-linux-gnu-g++
           fi
+          scons platform=linux target=template_release arch="$ARCHITECTURE" \
+            custom_api_file=godot-cpp/gdextension/extension_api.json
           EXTENSION="theSandbox/bin/libgdexample.linux.template_release.${ARCHITECTURE}.so"
           test -f "$EXTENSION"
           case "$ARCHITECTURE" in
